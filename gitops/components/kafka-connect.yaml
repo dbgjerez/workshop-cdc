@@ -1,34 +1,20 @@
 apiVersion: argoproj.io/v1alpha1
-kind: ApplicationSet
+kind: Application
 metadata:
   name: kafka-connect
   namespace: openshift-gitops
 spec:
-  generators:
-  - list:
-      elements:
-      - app: users-spa
-        namespace: demo
-      - app: users-pt
-        namespace: demo
-  template:
-    metadata: 
-      name: 'kafka-connect-{{app}}'
-      labels: 
-        app: '{{app}}'
-        type: kafka-connect
-    spec:
-      destination:
-        namespace: '{{namespace}}'
-        server: "https://kubernetes.default.svc"
-      source:
-        path: gitops/tenants/kafka-connect/
-        repoURL: "https://github.com/dbgjerez/workshop-cdc"
-        targetRevision: "1-structure"
-      project: default
-      syncPolicy:
-        automated:
-          prune: true
-          selfHeal: false
-        syncOptions:
-          - CreateNamespace=true
+  destination:
+    namespace: kafka
+    server: "https://kubernetes.default.svc"
+  source:
+    path: gitops/tenants/kafka-connect
+    repoURL: "https://github.com/dbgjerez/workshop-cdc"
+    targetRevision: "1-structure"
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
