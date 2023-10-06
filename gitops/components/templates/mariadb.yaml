@@ -1,0 +1,37 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: mariadb
+  namespace: openshift-gitops
+spec:
+  generators:
+  - list:
+      elements:
+      - app: users-spa
+        namespace: demo
+      - app: users-pt
+        namespace: demo
+  template:
+    metadata: 
+      name: 'mariadb-{{app}}'
+      labels: 
+        app: '{{app}}'
+        type: database
+    spec:
+      destination:
+        namespace: '{{namespace}}'
+        server: "https://kubernetes.default.svc"
+      source:
+        path: gitops/tenants/mariadb/
+        repoURL: {{ .Values.gitops.repo.url | quote }}
+        targetRevision: {{ .Values.gitops.repo.revision | quote }}
+        helm:
+          valueFiles:
+            - '{{app}}.values.yaml'
+      project: default
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: false
+        syncOptions:
+          - CreateNamespace=true

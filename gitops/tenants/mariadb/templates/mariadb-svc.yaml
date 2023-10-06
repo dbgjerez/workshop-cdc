@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mariadb-{{ .Values.service.name }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    name: mariadb-{{ .Values.service.name }}
+    app: mariadb-{{ .Values.service.name }}
+spec:
+  ports:
+  - name: http
+    port: 3306
+    protocol: TCP
+    targetPort: 3306
+  selector:
+    name: mariadb-{{ .Values.service.name }}
