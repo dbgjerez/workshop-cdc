@@ -5,7 +5,7 @@ metadata:
   namespace: openshift-gitops
 spec:
   destination:
-    namespace: kafka
+    namespace: openshift-operators
     server: "https://kubernetes.default.svc"
   source:
     path: gitops/core/operators
