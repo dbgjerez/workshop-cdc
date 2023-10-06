@@ -11,9 +11,6 @@ spec:
     path: gitops/components
     repoURL: "https://github.com/dbgjerez/workshop-cdc"
     targetRevision: 1-structure
-    helm:
-      valueFiles:
-        - values.yaml
   project: default
   syncPolicy:
     automated:

@@ -9,8 +9,8 @@ spec:
     server: "https://kubernetes.default.svc"
   source:
     path: gitops/tenants/kafka-cluster
-    repoURL: {{ .Values.gitops.repo.url | quote }}
-    targetRevision: {{ .Values.gitops.repo.revision | quote }}
+    repoURL: "https://github.com/dbgjerez/workshop-cdc"
+    targetRevision: "1-structure"
   project: default
   syncPolicy:
     automated:
