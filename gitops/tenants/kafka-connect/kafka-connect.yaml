@@ -6,6 +6,5 @@ metadata:
   name: kafka
   namespace: kafka
 spec:
-  replicas: 1
   version: 3.5.0
   bootstrapServers: 'kafka-kafka-bootstrap:9092'
