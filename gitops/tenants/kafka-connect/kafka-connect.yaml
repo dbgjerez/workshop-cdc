@@ -6,4 +6,15 @@ metadata:
   name: kafka
   namespace: kafka
 spec:
+  replicas: 1
+  version: 3.5.0
+  build: 
+    output: 
+      type: imagestream  
+      image: debezium-streams-connect:latest
+    plugins: 
+      - name: debezium-connector-mysql
+        artifacts:
+          - type: zip 
+            url: https://maven.repository.redhat.com/ga/io/debezium/debezium-connector-mysql/2.3.4.Final-redhat-00001/debezium-connector-mysql-2.3.4.Final-redhat-00001-plugin.zip
   bootstrapServers: 'kafka-kafka-bootstrap:9092'
