@@ -13,7 +13,6 @@ spec:
     database.password: parking1234
     database.dbname: users
     database.server.name: db
-    table.include.list: users.users
-    database.history.kafka.topic: users.spa
+    database.whitelist: "users"
     database.history.kafka.bootstrap.servers: 'kafka-kafka-bootstrap:9092'
   tasksMax: 1
