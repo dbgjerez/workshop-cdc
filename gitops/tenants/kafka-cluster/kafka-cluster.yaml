@@ -4,7 +4,6 @@ metadata:
   name: kafka
   labels:
     app: kafka
-    strimzi.io/cluster: kafka
 spec:
   entityOperator:
     topicOperator: {}
