@@ -1,0 +1,19 @@
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaConnector
+metadata:
+  labels:
+    strimzi.io/cluster: kafka
+  name: mariadb-debezium-usersspa
+spec:
+  class: io.debezium.connector.mysql.MySqlConnector
+  config:
+    database.hostname: mariadb-users-spa
+    database.port: 3306
+    database.user: parking1234
+    database.password: parking1234
+    database.dbname: users
+    database.server.name: db
+    table.include.list: users.users
+    database.history.kafka.topic: users.spa
+    database.history.kafka.bootstrap.servers: 'kafka-kafka-bootstrap:9092'
+  tasksMax: 1
