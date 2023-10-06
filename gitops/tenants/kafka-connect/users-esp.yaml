@@ -3,7 +3,7 @@ kind: KafkaConnector
 metadata:
   labels:
     strimzi.io/cluster: kafka
-  name: mariadb-debezium-usersspa
+  name: mariadb-debezium-users-spa
 spec:
   class: io.debezium.connector.mysql.MySqlConnector
   config:
