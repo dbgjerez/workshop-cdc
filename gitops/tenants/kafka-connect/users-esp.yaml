@@ -11,9 +11,10 @@ spec:
     database.port: 3306
     database.user: root
     database.password: parking1234
-    database.dbname: users
-    database.server.name: mariadb-users-spa
+    database.server.id: "184054"
+    database.server.name: "mariadb-users-spa"
     database.whitelist: users
     database.history.kafka.bootstrap.servers: 'kafka-kafka-bootstrap:9092'
     database.history.kafka.topic: "users.spa"
+    include.schema.changes: "true" 
   tasksMax: 1
