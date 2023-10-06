@@ -9,7 +9,7 @@ spec:
   config:
     database.hostname: mariadb-users-spa
     database.port: 3306
-    database.user: parking1234
+    database.user: root
     database.password: parking1234
     database.dbname: users
     database.server.name: db
