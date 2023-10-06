@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: bootstrap
+  namespace: openshift-gitops
+spec:
+  destination:
+    namespace: openshift-gitops
+    server: "https://kubernetes.default.svc"
+  source:
+    path: gitops/components
+    repoURL: "https://github.com/dbgjerez/workshop-cdc"
+    targetRevision: 1-structure
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: false
