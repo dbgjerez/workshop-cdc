@@ -13,7 +13,7 @@ spec:
         namespace: demo
   template:
     metadata: 
-      name: 'mariadb-{{app}}'
+      name: mariadb-'{{app}}'
       labels: 
         app: '{{app}}'
         type: database
