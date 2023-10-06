@@ -9,9 +9,6 @@ spec:
   replicas: 1
   version: 3.5.0
   build: 
-    output: 
-      type: imagestream  
-      image: debezium-streams-connect:latest
     plugins: 
       - name: debezium-connector-mysql
         artifacts:
