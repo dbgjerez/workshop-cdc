@@ -1,0 +1,1 @@
+Contains all the components that the cluster need to run correctly, for example: operators, logging, etc. 
