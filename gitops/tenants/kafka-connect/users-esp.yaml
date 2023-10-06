@@ -7,7 +7,7 @@ metadata:
 spec:
   class: io.debezium.connector.mysql.MySqlConnector
   config:
-    database.hostname: mariadb-users-spa.demo
+    database.hostname: mariadb-users-spa
     database.port: 3306
     database.user: root
     database.password: parking1234
