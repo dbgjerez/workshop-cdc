@@ -7,12 +7,11 @@ metadata:
 spec:
   class: io.debezium.connector.mysql.MySqlConnector
   config:
-    database.hostname: mariadb-users-spa
+    database.hostname: mariadb-users-spa.demo
     database.port: 3306
     database.user: root
     database.password: parking1234
     database.dbname: users
-    database.server.name: db
     database.whitelist: users
     database.history.kafka.bootstrap.servers: 'kafka-kafka-bootstrap:9092'
     database.history.kafka.topic: "users.spa"
