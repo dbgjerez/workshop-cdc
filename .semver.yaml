@@ -1,0 +1,29 @@
+{
+  "data": {
+    "artifactName": "workshop-cdc",
+    "version": {
+      "major": 0,
+      "minor": 1,
+      "patch": 0,
+      "rc": 0,
+      "snapshot": false
+    }
+  },
+  "config": {
+    "snapshots": {
+      "enabled": false,
+      "key": "SNAPSHOT"
+    },
+    "release-candidates": {
+      "enabled": false,
+      "key": ""
+    },
+    "gitflow": {
+      "enabled": false,
+      "branches": {
+        "snapshots": null,
+        "release-candidates": null
+      }
+    }
+  }
+}
