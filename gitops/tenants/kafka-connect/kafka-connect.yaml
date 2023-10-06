@@ -6,5 +6,7 @@ metadata:
   name: kafka
   namespace: kafka
 spec:
+  config:
+    group.id: kafka-connect
   image: quay.io/edeandrea/kafka-connect-debezium-mysql:amq-streams-1.4.0-dbz-1.1.0.Final
   bootstrapServers: 'kafka-kafka-bootstrap:9092'
