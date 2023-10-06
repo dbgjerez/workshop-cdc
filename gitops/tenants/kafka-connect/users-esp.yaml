@@ -15,4 +15,5 @@ spec:
     database.server.name: db
     database.whitelist: users
     database.history.kafka.bootstrap.servers: 'kafka-kafka-bootstrap:9092'
+    database.history.kafka.topic: "users.spa"
   tasksMax: 1
