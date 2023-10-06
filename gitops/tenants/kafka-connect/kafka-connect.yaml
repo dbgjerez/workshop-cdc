@@ -1,0 +1,9 @@
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaConnect
+metadata:
+  annotations:
+    strimzi.io/use-connector-resources: 'true'
+  name: kafka
+  namespace: kafka
+spec:
+  bootstrapServers: 'kafka-kafka-bootstrap:9092'
