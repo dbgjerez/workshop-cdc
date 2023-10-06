@@ -1,19 +1,16 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: bootstrap
+  name: operators
   namespace: openshift-gitops
 spec:
   destination:
-    namespace: openshift-gitops
+    namespace: kafka
     server: "https://kubernetes.default.svc"
   source:
-    path: gitops/components
-    repoURL: "https://github.com/dbgjerez/workshop-cdc"
-    targetRevision: 1-structure
-    helm:
-      valueFiles:
-        - values.yaml'
+    path: gitops/core/operators
+    repoURL: {{ .Values.gitops.repo.url | quote }}
+    targetRevision: {{ .Values.gitops.repo.revision | quote }}
   project: default
   syncPolicy:
     automated:

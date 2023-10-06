@@ -1,0 +1,4 @@
+gitops:
+  repo:
+    url: https://github.com/dbgjerez/workshop-cdc
+    revision: 1-structure
