@@ -16,6 +16,8 @@ spec:
     database.whitelist: users
     table.include.list: user
     topic.prefix: "demo"
+    schema.history.internal.kafka.topic: "history.demo"
+    schema.history.internal.kafka.bootstrap.servers: 'kafka-kafka-bootstrap:9092'
     database.history.kafka.bootstrap.servers: 'kafka-kafka-bootstrap:9092'
     database.history.kafka.topic: "history.demo"
     include.schema.changes: "false" 
