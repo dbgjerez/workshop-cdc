@@ -5,6 +5,9 @@ metadata:
   labels:
     app: grafana
 spec:
+  instanceSelector:
+    matchLabels:
+      dashboards: grafana
   json: |
     {
       "_comment" : "Based on https://grafana.com/grafana/dashboards/7589",
