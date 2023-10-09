@@ -37,7 +37,7 @@ spec: # specification for deployment resource
         volumeMounts:
         - name: mariadb-pv
           mountPath: /var/lib/mysql
-        - name: mariadb-config
+        - name: mariadb-{{ .Values.service.name }}
           mountPath: /etc/mysql/conf.d/
       volumes:
       - name: mariadb-{{ .Values.service.name }}
