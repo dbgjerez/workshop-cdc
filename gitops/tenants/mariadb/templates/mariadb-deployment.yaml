@@ -34,6 +34,8 @@ spec: # specification for deployment resource
               key: mariadb-root-password
         - name: MARIADB_DATABASE
           value: {{ .Values.mariadb.database }}
+        - name: BINLOG_FORMAT
+          value: ROW
         volumeMounts:
         - name: mariadb-pv
           mountPath: /var/lib/mysql
