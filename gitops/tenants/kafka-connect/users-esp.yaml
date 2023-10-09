@@ -15,4 +15,7 @@ spec:
     database.server.name: "mariadb-users-spa"
     database.whitelist: users
     topic.prefix: "demo"
+    database.history.kafka.bootstrap.servers: 'kafka-kafka-bootstrap:9092'
+    database.history.kafka.topic: "history.demo"
+    include.schema.changes: "false" 
   tasksMax: 1
