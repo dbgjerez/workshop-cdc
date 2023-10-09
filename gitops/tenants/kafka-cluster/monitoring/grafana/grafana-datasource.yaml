@@ -6,7 +6,6 @@ spec:
   instanceSelector:
     matchLabels:
       dashboards: grafana
-  name: prometheus
   datasource:
     name: Prometheus
     type: prometheus
