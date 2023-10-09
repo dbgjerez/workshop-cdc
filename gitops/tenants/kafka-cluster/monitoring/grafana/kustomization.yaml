@@ -8,3 +8,4 @@ resources:
   - grafana-dashboard-operator.yaml
   - grafana-dashboard-zookeeper.yaml
   - grafana-datasource.yaml
+  - grafana-route.yaml
