@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mariadb-{{ .Values.service.name }}
+data:
+  primary.cnf: |
+    [mariadb]
+    binlog_format            = row
+    
