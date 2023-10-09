@@ -7,14 +7,13 @@ spec:
     matchLabels:
       dashboards: grafana
   name: prometheus
-  datasources:
-    - name: Prometheus
-      type: prometheus
-      access: proxy
-      url: http://prometheus-operated:9090
-      isDefault: true
-      version: 1
-      editable: true
-      jsonData:
-        tlsSkipVerify: true
-        timeInterval: "5s"
+  datasource:
+    name: Prometheus
+    type: prometheus
+    access: proxy
+    url: http://prometheus-operated:9090
+    isDefault: true
+    editable: true
+    jsonData:
+      tlsSkipVerify: true
+      timeInterval: "5s"
