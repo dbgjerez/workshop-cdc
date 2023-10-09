@@ -3,14 +3,9 @@ kind: Grafana
 metadata:
   name: grafana
 spec:
-  ingress:
-    enabled: True
   config:
     security:
       admin_user: "admin"
       admin_password: "admin1234"
     auth:
       disable_login_form: 'false'
-  dashboardLabelSelector:
-    - matchExpressions:
-        - {key: app, operator: In, values: [grafana]}
