@@ -1,0 +1,1 @@
+Contains all the runtime files as the KafkaCluster, applications, etc.

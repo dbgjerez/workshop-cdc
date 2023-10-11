@@ -1,0 +1,1 @@
+Contains all the ArgoCD configuration, as applications, projects, etc. 

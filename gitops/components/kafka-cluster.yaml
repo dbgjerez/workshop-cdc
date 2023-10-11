@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kafka
+  namespace: openshift-gitops
+spec:
+  destination:
+    namespace: kafka
+    server: "https://kubernetes.default.svc"
+  source:
+    path: gitops/tenants/kafka-cluster
+    repoURL: "https://github.com/dbgjerez/workshop-cdc"
+    targetRevision: "1-structure"
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

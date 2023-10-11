@@ -1,0 +1,5 @@
+service:
+  name: users-spa
+mariadb:
+  database: users
+  user: users

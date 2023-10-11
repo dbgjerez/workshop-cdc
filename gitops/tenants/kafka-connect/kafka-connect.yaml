@@ -1,0 +1,23 @@
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaConnect
+metadata:
+  annotations:
+    strimzi.io/use-connector-resources: 'true'
+  name: kafka
+  namespace: kafka
+spec:
+  version: 3.5.0
+  build:
+    output:
+      # Use type 'docker' to push built image into a container registry like Docker Hub or Quay.io
+      type: imagestream
+      image: my-kafka-connect-image:0.0.1
+    plugins:
+    - name: debezium-connector-mysql
+      artifacts:
+      - type: zip
+        url: https://maven.repository.redhat.com/ga/io/debezium/debezium-connector-mysql/2.1.4.Final-redhat-00001/debezium-connector-mysql-2.1.4.Final-redhat-00001-plugin.zip
+        sha512sum: cb8ca43cc19b0a6cd705ccf77f5d29757493a61b4398226ef8b02cfc5cbea8dd3b76321c5ae669d4b526379896d068097bfa7189d237ffefbc9fdc8a03596498
+  bootstrapServers: 'kafka-kafka-bootstrap:9092'
+  config:
+    group.id: kafka-connect

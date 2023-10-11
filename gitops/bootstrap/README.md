@@ -1,0 +1,1 @@
+Contains all the configuration needed to start up the ArgoCD instance
