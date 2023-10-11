@@ -1,0 +1,25 @@
+service:
+  name: s-users-fr
+  image: quay.io/dborrego/cdc-s-users-fr
+  version: 0.1
+
+deployment:
+  replicas: 1
+  port: 8080
+  health:
+    liveness: /q/health/live
+    readiness: /q/health/ready
+  resources: 
+    limits:
+      cpu: 500m
+      memory: 1024Mi
+    requests:
+      cpu: 100m
+      memory: 256Mi
+
+mariadb:
+  database: users
+  user: users
+
+config:
+  env:
