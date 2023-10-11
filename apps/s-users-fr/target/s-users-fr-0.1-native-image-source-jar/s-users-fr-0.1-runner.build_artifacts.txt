@@ -1,3 +1,0 @@
-[EXECUTABLE]
-s-users-fr-0.1-runner
-
