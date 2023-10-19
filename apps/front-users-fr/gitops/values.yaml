@@ -1,7 +1,6 @@
 service:
-  name: no-default-value
-  image: no-default-value
-  version: no-default-value
+  name: front-users-fr
+  image: quay.io/dborrego/cdc-front-users-fr
 
 deployment:
   replicas: 2

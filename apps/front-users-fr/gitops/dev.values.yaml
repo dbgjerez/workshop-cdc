@@ -1,7 +1,5 @@
 service:
-  name: film-frontend
-  image: b0rr3g0/film-frontend
-  version: 0.1.12
+  version: 0.1
 
 deployment:
   port: 80
@@ -12,6 +10,6 @@ deployment:
 config:
   env:
     - name: SERVICE_NAME
-      value: film-frontend
+      value: front-users-fr
     - name: SERVICE_VERSION
-      value: 0.1.12
+      value: 0.1
