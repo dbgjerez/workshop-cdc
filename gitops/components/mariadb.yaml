@@ -7,7 +7,7 @@ spec:
   generators:
   - list:
       elements:
-      - app: users-spa
+      - app: users-fr
         namespace: demo
       - app: users-pt
         namespace: demo
