@@ -1,6 +1,6 @@
 service:
   name: front-users-fr
-  image: quay.io/dborrego/crc-front-users-fr
+  image: quay.io/dborrego/cdc-front-users-fr
 
 deployment:
   replicas: 2
