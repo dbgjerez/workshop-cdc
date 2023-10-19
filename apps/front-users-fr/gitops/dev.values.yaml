@@ -1,0 +1,17 @@
+service:
+  name: film-frontend
+  image: b0rr3g0/film-frontend
+  version: 0.1.12
+
+deployment:
+  port: 80
+  health:
+    liveness: /
+    readiness: /
+
+config:
+  env:
+    - name: SERVICE_NAME
+      value: film-frontend
+    - name: SERVICE_VERSION
+      value: 0.1.12

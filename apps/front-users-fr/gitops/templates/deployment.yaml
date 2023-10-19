@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.service.name }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    name: {{ .Values.service.name | quote }}
+    ns: {{ .Release.Namespace | quote }}
+    version: {{ .Values.service.version | quote }}
+spec:
+  replicas: {{ .Values.deployment.replicas }}
+  selector:
+    matchLabels:
+      name: {{ .Values.service.name | quote }}
+      ns: {{ .Release.Namespace | quote }}
+  template:
+    metadata:
+      labels:
+        name: {{ .Values.service.name | quote }}
+        ns: {{ .Release.Namespace | quote }}
+        version: {{ .Values.service.version | quote }}
+    spec:
+      containers:
+        - name: {{ .Values.service.name }}
+          image: {{ .Values.service.image }}:{{ .Values.service.version }}
+          env:
+          {{- range .Values.config.env }}
+          {{- $envItem := . -}}
+          {{- with $ }}
+            - name: {{ $envItem.name | upper |  replace "-" "_" | quote}}
+              value: {{ $envItem.value | quote }}
+          {{- end }}
+          {{- end }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.deployment.port }}
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: {{ .Values.deployment.health.liveness }}
+              port: http
+            failureThreshold: 10
+          readinessProbe:
+            httpGet:
+              path: {{ .Values.deployment.health.readiness }}
+              port: http
+            failureThreshold: 10
+          resources:
+            {{- toYaml .Values.deployment.resources | nindent 12 }}

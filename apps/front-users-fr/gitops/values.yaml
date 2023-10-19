@@ -1,0 +1,25 @@
+service:
+  name: no-default-value
+  image: no-default-value
+  version: no-default-value
+
+deployment:
+  replicas: 2
+  port: 8080
+  health:
+    liveness: /api/v1/health
+    readiness: /api/v1/health
+  resources: 
+    limits:
+      cpu: 250m
+      memory: 64Mi
+    requests:
+      cpu: 100m
+      memory: 16Mi
+
+config:
+  env:
+    - name: SERVICE_NAME
+      value: no-default-value
+    - name: SERVICE_VERSION
+      value: no-default-value
