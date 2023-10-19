@@ -43,6 +43,7 @@ public class UserHandler {
     }
 
     @PUT
+    @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public RestResponse<Void> update(User user) {

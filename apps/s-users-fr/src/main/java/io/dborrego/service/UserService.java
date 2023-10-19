@@ -32,9 +32,9 @@ public class UserService {
                         .findById(id))
                 .orElse(new User());
         user.setDni(u.getDni());
-        user.setFirstName(u.getDni());
+        user.setFirstName(u.getFirstName());
         user.setGender(u.getGender());
-        user.setLastName(u.getGender());
+        user.setLastName(u.getLastName());
         user.setPhone(u.getPhone());
         usersRepository.persist(user);
         return user;

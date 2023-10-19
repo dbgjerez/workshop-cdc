@@ -2,3 +2,5 @@ service:
   version: 0.1
 config:
   env:
+mariadb:
+  user: root

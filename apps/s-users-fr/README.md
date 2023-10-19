@@ -56,5 +56,5 @@ You can then execute your native executable with: `./target/s-users-fr-0.1-runne
 ### Build a native container
 
 ```shell script
-podman build --no-cache -f src/main/docker/Dockerfile.native-micro -t quay.io/dborrego/cdc-s-users-fr .
+podman build --no-cache -f src/main/docker/Dockerfile.native-micro -t quay.io/dborrego/cdc-s-users-fr:0.1 .
 ```

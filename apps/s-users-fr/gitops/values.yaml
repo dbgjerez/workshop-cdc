@@ -18,7 +18,7 @@ deployment:
       memory: 256Mi
 
 mariadb:
-  database: users
+  database: mariadb-users-fr
   user: users
 
 config:
