@@ -9,7 +9,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Build container
 
 ```bash
-SERVICE_NAME=crc-front-users-fr
+SERVICE_NAME=cdc-front-users-fr
 FILM_FRONTEND_VERSION=0.1
 podman build \
     -t quay.io/dborrego/$SERVICE_NAME:$FILM_FRONTEND_VERSION \
