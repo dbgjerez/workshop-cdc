@@ -9,5 +9,4 @@ RUN npm run build
 # production environment
 FROM registry.access.redhat.com/ubi8/nginx-120
 COPY --from=build /app/build .
-COPY nginx.conf "${NGINX_CONF_PATH}"
 CMD ["nginx", "-g", "daemon off;"]
