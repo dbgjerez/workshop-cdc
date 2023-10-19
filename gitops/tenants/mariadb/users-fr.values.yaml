@@ -1,5 +1,5 @@
 service:
-  name: users-fr
+  name: mariadb-users-fr
 mariadb:
   database: users
   user: users
