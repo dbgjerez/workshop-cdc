@@ -2,7 +2,7 @@ service:
   version: 0.2.1
 
 deployment:
-  port: 80
+  port: 8080
   health:
     liveness: /
     readiness: /
