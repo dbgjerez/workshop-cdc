@@ -1,0 +1,24 @@
+service:
+  name: ns-users-fr-change-reader
+  image: quay.io/dborrego/cdc-ns-users-fr-change-reader
+  version: 0.1
+
+deployment:
+  replicas: 1
+  port: 8080
+  health:
+    liveness: /q/health/live
+    readiness: /q/health/ready
+  resources: 
+    limits:
+      cpu: 500m
+      memory: 1024Mi
+    requests:
+      cpu: 100m
+      memory: 256Mi
+
+kafka:
+  bootstrap: kafka-kafka-bootstrap.kafka:9092
+
+config:
+  env:
