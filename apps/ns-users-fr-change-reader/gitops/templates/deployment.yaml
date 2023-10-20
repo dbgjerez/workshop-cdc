@@ -32,6 +32,8 @@ spec:
           {{- end }}
           - name: KAFKA_BOOTSTRAP_SERVERS
             value: {{ .Values.kafka.bootstrap }}
+          - name: MP_MESSAGING_INCOMING_USERS_TOPIC
+            value: {{ .Values.kafka.users.topic }}
           ports:
             - name: http
               containerPort: {{ .Values.deployment.port }}

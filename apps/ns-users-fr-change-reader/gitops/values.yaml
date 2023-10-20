@@ -19,6 +19,8 @@ deployment:
 
 kafka:
   bootstrap: kafka-kafka-bootstrap.kafka:9092
+  users:
+    topic: demo-fr.users.User
 
 config:
   env:
