@@ -14,7 +14,6 @@ public class UserProcessor {
 
     @Incoming("users")
     public void reader(Change change) {
-        LOGGER.warning("Recibido mensaje");
         LOGGER.info(String.format("Received %s", change));
     }
 
