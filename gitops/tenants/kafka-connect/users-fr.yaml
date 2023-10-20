@@ -12,7 +12,7 @@ spec:
     database.user: root
     database.password: parking1234
     database.server.id: "223344"
-    database.server.name: "mariadb-users-spa"
+    database.server.name: "mariadb-users-fr"
     database.whitelist: users
     topic.prefix: "demo"
     schema.history.internal.kafka.topic: "history.demo"
