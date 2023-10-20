@@ -3,11 +3,11 @@ kind: KafkaConnector
 metadata:
   labels:
     strimzi.io/cluster: kafka
-  name: mariadb-debezium-users-spa
+  name: mariadb-debezium-users-fr
 spec:
   class: io.debezium.connector.mysql.MySqlConnector
   config:
-    database.hostname: mariadb-users-spa.demo
+    database.hostname: mariadb-users-fr.demo
     database.port: 3306
     database.user: root
     database.password: parking1234
