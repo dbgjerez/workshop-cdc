@@ -32,9 +32,9 @@ spec:
           {{- end }}
           - name: KAFKA_BOOTSTRAP_SERVERS
             value: {{ .Values.kafka.bootstrap }}
-          - name: MP_MESSAGING_INCOMING_USERS-FR_TOPIC
+          - name: mp.messaging.incoming.users-fr.topic
             value: {{ .Values.kafka.users.fr.topic }}
-          - name: MP_MESSAGING_INCOMING_USERS-PT_TOPIC
+          - name: mp.messaging.incoming.users-pt.topic
             value: {{ .Values.kafka.users.pt.topic }}
           ports:
             - name: http

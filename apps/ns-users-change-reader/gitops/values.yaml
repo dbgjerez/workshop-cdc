@@ -21,7 +21,7 @@ kafka:
   bootstrap: kafka-kafka-bootstrap.kafka:9092
   users:
     fr:
-      topic: demo.fr.users.user
+      topic: fr.users.user
     pt:
       topic: pt.users.user
 
