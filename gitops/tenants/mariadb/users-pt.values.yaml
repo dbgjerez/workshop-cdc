@@ -1,5 +1,7 @@
 service:
   name: s-users-pt
 mariadb:
+  server: 
+    id: 112233
   database: users
   user: users
