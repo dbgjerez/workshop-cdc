@@ -23,7 +23,7 @@ kafka:
     fr:
       topic: demo.fr.users.user
     pt:
-      topic: demo.pt.users.user
+      topic: pt.users.user
 
 config:
   env:
