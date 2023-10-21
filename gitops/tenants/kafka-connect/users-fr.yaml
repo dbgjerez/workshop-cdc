@@ -15,9 +15,9 @@ spec:
     database.server.name: "mariadb-s-users-fr"
     database.whitelist: users
     topic.prefix: "demo.fr"
-    schema.history.internal.kafka.topic: "history.demo"
+    schema.history.internal.kafka.topic: "history.demo.fr"
     schema.history.internal.kafka.bootstrap.servers: 'kafka-kafka-bootstrap:9092'
     database.history.kafka.bootstrap.servers: 'kafka-kafka-bootstrap:9092'
-    database.history.kafka.topic: "history.demo"
+    database.history.kafka.topic: "history.demo.fr"
     include.schema.changes: "false" 
   tasksMax: 1

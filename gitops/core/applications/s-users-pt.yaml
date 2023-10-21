@@ -1,18 +1,21 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: kafka-connect
+  name: s-users-pt
   namespace: openshift-gitops
 spec:
   destination:
-    namespace: kafka
+    namespace: demo
     server: "https://kubernetes.default.svc"
   source:
-    path: gitops/tenants/kafka-connect
+    path: apps/s-users-pt/gitops
     repoURL: "https://github.com/dbgjerez/workshop-cdc"
     targetRevision: 3-legacy-system-window
+    helm:
+      valueFiles:
+      - 'dev.values.yaml'
   project: default
   syncPolicy:
-    automated: {}
-    syncOptions:
-      - CreateNamespace=true
+    automated:
+      prune: true
+      selfHeal: false
