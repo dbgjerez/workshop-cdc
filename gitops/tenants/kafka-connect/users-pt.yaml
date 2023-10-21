@@ -11,7 +11,7 @@ spec:
     database.port: 3306
     database.user: root
     database.password: parking1234
-    database.server.id: "223344"
+    database.server.id: "112233"
     database.server.name: "mariadb-s-users-pt"
     database.whitelist: users
     topic.prefix: "pt"
