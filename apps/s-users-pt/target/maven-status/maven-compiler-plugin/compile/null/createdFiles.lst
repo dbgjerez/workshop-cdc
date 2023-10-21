@@ -1,0 +1,6 @@
+io/dborrego/service/UserService.class
+io/dborrego/Application.class
+io/dborrego/domain/UserRepository.class
+io/dborrego/handler/UserHandler.class
+META-INF/panache-archive.marker
+io/dborrego/domain/User.class
