@@ -17,6 +17,7 @@ spec:
     topic.prefix: "fr"
     schema.history.internal.kafka.topic: "history.demo.fr"
     schema.history.internal.kafka.bootstrap.servers: 'kafka-kafka-bootstrap:9092'
+    snapshot.mode: "schema_only_recovery"
     database.history.kafka.bootstrap.servers: 'kafka-kafka-bootstrap:9092'
     database.history.kafka.topic: "history.demo.fr"
     include.schema.changes: "false" 
