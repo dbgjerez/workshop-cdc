@@ -1,0 +1,15 @@
+service:
+  version: 0.2.3
+
+deployment:
+  port: 8080
+  health:
+    liveness: /
+    readiness: /
+
+config:
+  env:
+    - name: SERVICE_NAME
+      value: front-users-fr
+    - name: SERVICE_VERSION
+      value: 0.1

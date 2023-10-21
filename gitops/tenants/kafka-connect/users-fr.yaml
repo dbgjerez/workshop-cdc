@@ -14,7 +14,7 @@ spec:
     database.server.id: "223344"
     database.server.name: "mariadb-s-users-fr"
     database.whitelist: users
-    topic.prefix: "demo.fr"
+    topic.prefix: "fr"
     schema.history.internal.kafka.topic: "history.demo.fr"
     schema.history.internal.kafka.bootstrap.servers: 'kafka-kafka-bootstrap:9092'
     database.history.kafka.bootstrap.servers: 'kafka-kafka-bootstrap:9092'
