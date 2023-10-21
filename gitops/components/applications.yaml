@@ -12,5 +12,3 @@ spec:
     repoURL: "https://github.com/dbgjerez/workshop-cdc"
     targetRevision: 3-legacy-system-window
   project: default
-  syncPolicy:
-    automated: {}

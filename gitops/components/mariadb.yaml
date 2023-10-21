@@ -30,6 +30,5 @@ spec:
             - '{{app}}.values.yaml'
       project: default
       syncPolicy:
-        automated: {}
         syncOptions:
           - CreateNamespace=true
