@@ -1,6 +1,6 @@
 service:
-  name: ns-users-fr-change-reader
-  image: quay.io/dborrego/cdc-ns-users-fr-change-reader
+  name: ns-users-change-reader
+  image: quay.io/dborrego/cdc-ns-users-change-reader
   version: 0.1
 
 deployment:
@@ -9,7 +9,7 @@ deployment:
   health:
     liveness: /q/health/live
     readiness: /q/health/ready
-  resources: 
+  resources:
     limits:
       cpu: 500m
       memory: 1024Mi
@@ -20,7 +20,10 @@ deployment:
 kafka:
   bootstrap: kafka-kafka-bootstrap.kafka:9092
   users:
-    topic: demo-fr.users.User
+    fr:
+      topic: demo.fr.users.user
+    pt:
+      topic: demo.pt.users.user
 
 config:
   env:
