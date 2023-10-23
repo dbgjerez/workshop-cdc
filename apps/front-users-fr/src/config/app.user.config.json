@@ -1,6 +1,6 @@
 {
-    "host": "http://localhost",
-    "port": 8080,
+    "host": "https://s-users-fr-demo.apps.cluster-vpdfd.dynamic.opentlc.com",
+    "port": 443,
     "getAll": "/users",
     "create": "/users",
     "delete": "/users",
