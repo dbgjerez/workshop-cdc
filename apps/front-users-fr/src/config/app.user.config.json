@@ -1,6 +1,6 @@
 {
-    "host": "https://s-users-fr-demo.apps.cluster-swd9n.dynamic.opentlc.com",
-    "port": 443,
+    "host": "http://localhost",
+    "port": 8080,
     "getAll": "/users",
     "create": "/users",
     "delete": "/users",
