@@ -36,6 +36,8 @@ spec:
             value: {{ .Values.kafka.users.fr.topic }}
           - name: mp.messaging.incoming.users-pt.topic
             value: {{ .Values.kafka.users.pt.topic }}
+          - name: quarkus.rest-client.client-user.url
+            value: {{ .Values.client.user }}
           ports:
             - name: http
               containerPort: {{ .Values.deployment.port }}

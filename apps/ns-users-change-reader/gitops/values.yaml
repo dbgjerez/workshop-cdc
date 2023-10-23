@@ -17,6 +17,9 @@ deployment:
       cpu: 100m
       memory: 256Mi
 
+client:
+  user: http://ms-users-demo
+
 kafka:
   bootstrap: kafka-kafka-bootstrap.kafka:9092
   users:
