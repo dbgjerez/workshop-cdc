@@ -11,6 +11,8 @@ spec:
         namespace: demo
       - app: users-pt
         namespace: demo
+      - app: users
+        namespace: demo
   template:
     metadata: 
       name: 'mariadb-{{app}}'
