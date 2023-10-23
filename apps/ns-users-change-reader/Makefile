@@ -1,7 +1,7 @@
 build: 
-	mvn package -Pnative -Dquarkus.native.container-build=true
+	mvn package quarkus:image-build
 
 image: 
-	podman build \
-	--no-cache -f src/main/docker/Dockerfile.native-micro \
-	-t quay.io/dborrego/cdc-ns-users-fr-change-reader:0.1.1 .
+	podman image tag \
+    b0rr3g0/ns-users-change-reader:1.0.0-SNAPSHOT \
+    quay.io/dborrego/cdc-ns-users-change-reader:0.3
