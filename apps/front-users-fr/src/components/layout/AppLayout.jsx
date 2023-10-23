@@ -5,9 +5,10 @@ const AppLayout = () => {
     return (
         <Grid celled>
             <Grid.Row>
-            <Header as='h2' icon textAlign='center'>
-                <Header.Content>CDC Demo</Header.Content>
-                <Header.Content>Front France users</Header.Content>
+            <Header as='h1' icon textAlign='center'>
+                <Header.Content>
+                    <i class="france flag"/>France users
+                </Header.Content>
             </Header>
             </Grid.Row>
             <Grid.Row>

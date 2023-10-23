@@ -87,12 +87,6 @@ const UserCRUD = (config) => {
             });
     };
     
-
-const genders = [
-    { key: 'm', text: 'Masculino', value: 'Masculino' },
-    { key: 'f', text: 'Femenino', value: 'Femenino' },
-]
-
     const updateScreen = () => {
         fetch(config.config.host+":"+config.config.port+config.config.getAll)  
             .then(
@@ -117,9 +111,9 @@ const genders = [
             firstName: '',
             lastName: '',
             dni: '',
-            gender: '',
-            phone: ''
+            email: '',
         });
+        setIsEditing(false);
     };
 
 

@@ -7,6 +7,7 @@ public class UserChange {
     String gender;
     String lastName;
     String phone;
+    String email;
 
     public UserChange() {
     }
@@ -58,4 +59,13 @@ public class UserChange {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
+    public String getEmail() {
+        return this.email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
 }

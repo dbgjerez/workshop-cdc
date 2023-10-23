@@ -1,0 +1,7 @@
+service:
+  name: ms-users
+mariadb:
+  server: 
+    id: 111111
+  database: users
+  user: users
