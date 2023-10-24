@@ -3,14 +3,13 @@ package io.dborrego.service;
 import java.util.List;
 import java.util.Optional;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
-import javax.transaction.Transactional;
-
 import org.jboss.logging.Logger;
 
 import io.dborrego.domain.User;
 import io.dborrego.domain.UserRepository;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 
 @ApplicationScoped
 public class UserService {
