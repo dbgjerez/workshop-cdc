@@ -1,5 +1,6 @@
 package io.dborrego.service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,7 +25,7 @@ public class UserService {
         return usersRepository.findById(idUser);
     }
 
-    public User findByDni(final String dni) {
+    public List<User> findByDni(final String dni) {
         return usersRepository.findByDni(dni);
     }
 
@@ -45,7 +46,7 @@ public class UserService {
     public User update(final User u) {
         final User user = Optional.ofNullable(u)
                 .map(User::getDni)
-                .map(usersRepository::findByDni)
+                .map(usersRepository::findByDni).orElse(Collections.emptyList()).stream().findAny()
                 .orElse(new User());
         user.setFirstName(u.getFirstName());
         user.setLastName(u.getLastName());
