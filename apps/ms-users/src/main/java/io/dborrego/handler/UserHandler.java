@@ -19,9 +19,7 @@ import org.jboss.resteasy.reactive.RestResponse;
 
 import io.dborrego.domain.User;
 import io.dborrego.service.UserService;
-import io.smallrye.common.annotation.NonBlocking;
 
-@NonBlocking
 @Path("/users")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
@@ -31,7 +29,6 @@ public class UserHandler {
     UserService usersService;
 
     @GET
-    @NonBlocking
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public List<User> list(@QueryParam("dni") String dni) {

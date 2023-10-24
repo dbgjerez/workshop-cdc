@@ -41,6 +41,7 @@ public class UserService {
         return user;
     }
 
+    @Transactional
     public User update(final User u, Long idUser) {
         final User entity = usersRepository.findById(idUser);
         LOGGER.info(String.format("Encontrado usuario con dni [%s] e id [%d]", entity.getDni(), entity.getId()));
@@ -51,7 +52,6 @@ public class UserService {
         entity.setGender(u.getGender() != null ? u.getGender() : entity.getGender());
         entity.setPhone(u.getPhone() != null ? u.getPhone() : entity.getPhone());
         usersRepository.persist(entity);
-        usersRepository.deleteById(idUser);
         return entity;
     }
 
