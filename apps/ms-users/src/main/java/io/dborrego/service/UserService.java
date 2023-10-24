@@ -46,9 +46,10 @@ public class UserService {
         final User user = usersRepository.findById(idUser);
         user.setFirstName(u.getFirstName());
         user.setLastName(u.getLastName());
-        user.setEmail(u.getEmail().isBlank() ? user.getEmail() : u.getEmail());
-        user.setGender(u.getGender().isBlank() ? user.getGender() : u.getGender());
-        user.setPhone(u.getPhone().isBlank() ? user.getPhone() : u.getPhone());
+        user.setDni(u.getDni());
+        user.setEmail(u.getEmail() != null ? u.getEmail() : user.getEmail());
+        user.setGender(u.getGender() != null ? u.getGender() : user.getGender());
+        user.setPhone(u.getPhone().isBlank() ? u.getPhone() : user.getPhone());
         usersRepository.persist(user);
         return user;
     }
