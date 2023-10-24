@@ -1,5 +1,5 @@
 {
-    "host": "https://s-users-fr-demo.apps.cluster-vpdfd.dynamic.opentlc.com",
+    "host": "https://s-users-fr-demo.apps.cluster-dc4vx.dynamic.opentlc.com",
     "port": 443,
     "getAll": "/users",
     "create": "/users",
