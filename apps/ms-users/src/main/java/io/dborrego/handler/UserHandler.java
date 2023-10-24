@@ -56,9 +56,9 @@ public class UserHandler {
     @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public RestResponse<Void> update(User user) {
+    public RestResponse<Void> update(User user, Long id) {
         try {
-            usersService.update(user);
+            usersService.update(user, id);
         } catch (Exception e) {
             return RestResponse.status(Response.Status.INTERNAL_SERVER_ERROR);
         }
