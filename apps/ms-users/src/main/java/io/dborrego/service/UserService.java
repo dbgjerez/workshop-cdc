@@ -7,12 +7,15 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
+import org.jboss.logging.Logger;
+
 import io.dborrego.domain.User;
 import io.dborrego.domain.UserRepository;
-import io.quarkus.logging.Log;
 
 @ApplicationScoped
 public class UserService {
+
+    private static final Logger LOGGER = Logger.getLogger(UserService.class.getName());
 
     @Inject
     UserRepository usersRepository;
@@ -40,15 +43,16 @@ public class UserService {
 
     @Transactional
     public User update(final User u, Long idUser) {
-        final User user = usersRepository.findById(idUser);
-        Log.info(String.format("Encontrado usuario con dni [%s] e id [%d]", user.getDni(), user.getId()));
-        user.setFirstName(u.getFirstName());
-        user.setLastName(u.getLastName());
-        user.setDni(u.getDni());
-        user.setEmail(u.getEmail() != null ? u.getEmail() : user.getEmail());
-        user.setGender(u.getGender() != null ? u.getGender() : user.getGender());
-        user.setPhone(u.getPhone() != null ? u.getPhone() : user.getPhone());
-        return user;
+        final User entity = usersRepository.findById(idUser);
+        LOGGER.info(String.format("Encontrado usuario con dni [%s] e id [%d]", entity.getDni(), entity.getId()));
+        entity.setFirstName(u.getFirstName());
+        entity.setLastName(u.getLastName());
+        entity.setDni(u.getDni());
+        entity.setEmail(u.getEmail() != null ? u.getEmail() : entity.getEmail());
+        entity.setGender(u.getGender() != null ? u.getGender() : entity.getGender());
+        entity.setPhone(u.getPhone() != null ? u.getPhone() : entity.getPhone());
+        
+        return entity;
     }
 
     @Transactional
