@@ -14,8 +14,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
-import org.jboss.resteasy.reactive.RestResponse;
+import javax.ws.rs.core.Response.Status;
+import javax.ws.rs.core.Response.StatusType;
 
 import io.dborrego.domain.User;
 import io.dborrego.service.UserService;
@@ -55,23 +55,23 @@ public class UserHandler {
     @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public RestResponse<Void> update(User user, @PathParam(value = "id") Long id) {
+    public Response update(User user, @PathParam(value = "id") Long id) {
         try {
             usersService.update(user, id);
         } catch (Exception e) {
-            return RestResponse.status(Response.Status.INTERNAL_SERVER_ERROR);
+            return Response.serverError().build();
         }
-        return RestResponse.status(Response.Status.OK);
+        return Response.ok().build();
     }
 
     @DELETE
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public RestResponse<Void> delete(Long id) {
+    public Response delete(Long id) {
         if (usersService.deleteById(id))
-            return RestResponse.status(Response.Status.OK);
+            return Response.ok().build();
         else
-            return RestResponse.status(Response.Status.NOT_FOUND);
+            return Response.status(Status.NOT_FOUND).build();
     }
 
 }
