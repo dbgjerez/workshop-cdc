@@ -1,6 +1,7 @@
 package io.dborrego.processor;
 
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.Function;
 import java.util.logging.Logger;
 
@@ -54,14 +55,18 @@ public class UserProcessor {
                                 table));
                 LOGGER.info(String.format("Usuario anterior: %s",
                                 change.getPayload().getBefore() != null ? change.getPayload().getBefore() : "null"));
-                LOGGER.info(String.format("Usuario posterior: %s", change.getPayload().getAfter().toString()));
+                LOGGER.info(String.format("Usuario posterior: %s",
+                                change.getPayload() != null ? change.getPayload().getAfter().toString() : "null"));
                 final UserDTO user = extractUser(change.getPayload().getAfter());
                 try {
                         if (user.getDni() == null) {
                                 throw new Exception("El dni del usuario no puede ser null");
                         }
                         if (operation.equals("c")) {
-                                if (!Optional.ofNullable(user.getDni()).map(userClient::getById).isEmpty()) {
+                                final Set<UserDTO> findState = userClient.getById(user.getDni());
+                                LOGGER.info(String.format("Encontrados %d usuarios con dni [%s]", findState.size(),
+                                                user.getDni()));
+                                if (findState.size() > 0) {
                                         LOGGER.info(String.format("El usuario %s %s con DNI %s ya existe",
                                                         user.getFirstName(),
                                                         user.getLastName(), user.getDni()));
