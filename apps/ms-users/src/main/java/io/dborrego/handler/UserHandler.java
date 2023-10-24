@@ -22,12 +22,17 @@ import io.smallrye.common.annotation.NonBlocking;
 
 @NonBlocking
 @Path("/users")
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
 public class UserHandler {
 
     @Inject
     UserService usersService;
 
     @GET
+    @NonBlocking
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public List<User> list(@QueryParam("dni") String dni) {
         if (dni != null && !dni.equals(""))
             return usersService.findByDni(dni);
