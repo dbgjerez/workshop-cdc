@@ -1,5 +1,6 @@
 package io.dborrego.processor;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 
@@ -14,6 +15,7 @@ import io.dborrego.model.PayloadChange;
 import io.dborrego.model.SourceChange;
 import io.dborrego.model.UserChange;
 import io.quarkus.logging.Log;
+import io.smallrye.reactive.messaging.annotations.Blocking;
 import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
@@ -26,15 +28,19 @@ public class UserProcessor {
         @RestClient
         UserClient userClient;
 
+        @Blocking
         @Incoming("users-fr")
         public void readerFr(Change change) {
                 try {
                         processChange(change, "users-fr");
                 } catch (RuntimeException e) {
-                        Log.error("Error no controlado al procesar mensaje: %s", e);
+                        LOGGER.warning(String.format("Error no controlado al procesar el mensaje [%s] por [%s]",
+                                        change != null ? change.toString() : "change is null",
+                                        e.getMessage()));
                 }
         }
 
+        @Blocking
         @Incoming("users-pt")
         public void readerPt(Change change) {
                 try {
@@ -59,7 +65,7 @@ public class UserProcessor {
                                 change.getPayload() != null ? change.getPayload().getAfter().toString() : "null"));
                 final UserDTO user = extractUser(change.getPayload().getAfter());
                 try {
-                        if (user.getDni() == null) {
+                        if (user.getDni() == null || user.getDni().equals("")) {
                                 throw new Exception("El dni del usuario no puede ser null");
                         }
                         if (operation.equals("c")) {
@@ -75,7 +81,8 @@ public class UserProcessor {
                                 userClient.update(user, tmpGetDni(user.getDni()).get().getId());
                         }
                 } catch (Exception e) {
-                        LOGGER.warning(String.format("Error, with operation %s for %s", operation, e.getStackTrace()));
+                        Log.error(String.format("Error, with operation %s", operation).concat(": [%s]"),
+                                        e);
                 }
         }
 
@@ -85,8 +92,10 @@ public class UserProcessor {
          * @param dni
          */
         private Optional<UserDTO> tmpGetDni(String dni) {
-                return userClient.getAllUsers()
-                                .stream()
+                final List<UserDTO> users = userClient.getAllUsers();
+
+                LOGGER.info(String.format("Encontrados %d usuarios", users.size()));
+                return users.stream()
                                 .peek(u -> LOGGER.info(String.format("Filtrando usuario %s con dni %s",
                                                 u.getFirstName(), u.getDni())))
                                 .filter(u -> u.getDni() != null && u.getDni().equals(dni))
@@ -104,7 +113,7 @@ public class UserProcessor {
                 if (after.getPhone() != null && after.getPhone().isEmpty()) {
                         user.setPhone(after.getPhone());
                 }
-                if (after.getEmail() != null && after.getEmail().isBlank()) {
+                if (after.getEmail() != null && after.getEmail().isEmpty()) {
                         user.setEmail(after.getEmail());
                 }
                 return user;
