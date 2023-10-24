@@ -35,8 +35,6 @@ public class UserHandler {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public List<User> list(@QueryParam("dni") String dni) {
-        if (dni != null && !dni.equals(""))
-            return usersService.findByDni(dni);
         return usersService.listAll();
     }
 

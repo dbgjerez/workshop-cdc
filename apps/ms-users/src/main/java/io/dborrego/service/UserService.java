@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 
 import io.dborrego.domain.User;
 import io.dborrego.domain.UserRepository;
+import io.quarkus.logging.Log;
 
 @ApplicationScoped
 public class UserService {
@@ -22,10 +23,6 @@ public class UserService {
 
     public User findById(final Long idUser) {
         return usersRepository.findById(idUser);
-    }
-
-    public List<User> findByDni(final String dni) {
-        return usersRepository.findByDni(dni);
     }
 
     @Transactional
@@ -43,14 +40,15 @@ public class UserService {
 
     @Transactional
     public User update(final User u, Long idUser) {
-        final User user = usersRepository.findById(idUser);
+        User user = usersRepository.findById(idUser);
+        Log.info(String.format("Encontrado usuario con dni [%s] e id [%d]", user.getDni(), user.getId()));
         user.setFirstName(u.getFirstName());
         user.setLastName(u.getLastName());
         user.setDni(u.getDni());
         user.setEmail(u.getEmail() != null ? u.getEmail() : user.getEmail());
         user.setGender(u.getGender() != null ? u.getGender() : user.getGender());
         user.setPhone(u.getPhone().isBlank() ? u.getPhone() : user.getPhone());
-        usersRepository.persist(user);
+        usersRepository.persistAndFlush(user);
         return user;
     }
 
