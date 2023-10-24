@@ -57,10 +57,11 @@ public class UserProcessor {
                 LOGGER.info(String.format("Usuario posterior: %s", change.getPayload().getAfter().toString()));
                 final UserDTO user = extractUser(change.getPayload().getAfter());
                 try {
+                        if (user.getDni() == null) {
+                                throw new Exception("El dni del usuario no puede ser null");
+                        }
                         if (operation.equals("c")) {
-                                final UserDTO u = Optional.ofNullable(user.getDni()).map(userClient::getById)
-                                                .orElseThrow();
-                                if (u != null) {
+                                if (!Optional.ofNullable(user.getDni()).map(userClient::getById).isEmpty()) {
                                         LOGGER.info(String.format("El usuario %s %s con DNI %s ya existe",
                                                         user.getFirstName(),
                                                         user.getLastName(), user.getDni()));

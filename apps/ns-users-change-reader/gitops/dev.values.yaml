@@ -1,4 +1,4 @@
 service:
-  version: 0.5
+  version: 0.5.1
 config:
   env:

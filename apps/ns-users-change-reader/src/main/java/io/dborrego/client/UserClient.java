@@ -1,5 +1,7 @@
 package io.dborrego.client;
 
+import java.util.Set;
+
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
 import jakarta.ws.rs.GET;
@@ -19,6 +21,6 @@ public interface UserClient {
     public void create(UserDTO user);
 
     @GET
-    public UserDTO getById(@QueryParam("id") String id);
+    public Set<UserDTO> getById(@QueryParam("id") String id);
 
 }
