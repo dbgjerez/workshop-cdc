@@ -18,7 +18,9 @@ import org.jboss.resteasy.reactive.RestResponse;
 
 import io.dborrego.domain.User;
 import io.dborrego.service.UserService;
+import io.smallrye.common.annotation.NonBlocking;
 
+@NonBlocking
 @Path("/users")
 public class UserHandler {
 
