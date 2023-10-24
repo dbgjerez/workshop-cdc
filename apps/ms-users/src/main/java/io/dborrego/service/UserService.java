@@ -52,6 +52,7 @@ public class UserService {
         entity.setGender(u.getGender() != null ? u.getGender() : entity.getGender());
         entity.setPhone(u.getPhone() != null ? u.getPhone() : entity.getPhone());
         usersRepository.persist(entity);
+        usersRepository.deleteById(idUser);
         return entity;
     }
 
