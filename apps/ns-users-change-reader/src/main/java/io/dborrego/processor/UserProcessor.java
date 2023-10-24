@@ -58,7 +58,16 @@ public class UserProcessor {
                 final UserDTO user = extractUser(change.getPayload().getAfter());
                 try {
                         if (operation.equals("c")) {
-                                userClient.create(user);
+                                final UserDTO u = Optional.ofNullable(user.getDni()).map(userClient::getById)
+                                                .orElseThrow();
+                                if (u != null) {
+                                        LOGGER.info(String.format("El usuario %s %s con DNI %s ya existe",
+                                                        user.getFirstName(),
+                                                        user.getLastName(), user.getDni()));
+                                        userClient.update(user, user.getDni());
+                                } else {
+                                        userClient.create(user);
+                                }
                         } else if (operation.equals("u")) {
                                 userClient.update(user, user.getDni());
                         }
@@ -79,7 +88,7 @@ public class UserProcessor {
                         user.setPhone(after.getPhone());
                 }
                 if (after.getEmail() != null && after.getEmail().isBlank()) {
-                        return user;
+                        user.setEmail(after.getEmail());
                 }
                 return user;
         }
