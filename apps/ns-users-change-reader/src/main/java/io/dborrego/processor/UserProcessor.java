@@ -2,7 +2,6 @@ package io.dborrego.processor;
 
 import java.util.Optional;
 import java.util.function.Function;
-import java.util.logging.Logger;
 
 import org.eclipse.microprofile.reactive.messaging.Incoming;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
@@ -13,12 +12,11 @@ import io.dborrego.model.Change;
 import io.dborrego.model.PayloadChange;
 import io.dborrego.model.SourceChange;
 import io.dborrego.model.UserChange;
+import io.quarkus.logging.Log;
 import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 public class UserProcessor {
-
-        private static final Logger LOGGER = Logger.getLogger(UserProcessor.class.getName());
 
         private static final String NOT_FOUND = "NOT_FOUND";
 
@@ -30,8 +28,7 @@ public class UserProcessor {
                 try {
                         processChange(change, "users-fr");
                 } catch (RuntimeException e) {
-                        LOGGER.warning(String.format("Error no controlado al procesar mensaje: %s",
-                                        change != null ? change.toString() : "change is null"));
+                        Log.error("Error no controlado al procesar mensaje: %s", e);
                 }
         }
 
