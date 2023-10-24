@@ -24,6 +24,10 @@ public class UserService {
         return usersRepository.findById(idUser);
     }
 
+    public User findByDni(final String dni) {
+        return usersRepository.findByDni(dni);
+    }
+
     @Transactional
     public User create(final User u) {
         final User user = new User();

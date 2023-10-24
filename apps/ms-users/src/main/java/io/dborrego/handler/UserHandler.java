@@ -30,9 +30,9 @@ public class UserHandler {
     }
 
     @GET
-    @Path("/{id}")
-    public User get(Long id) {
-        return usersService.findById(id);
+    @Path("/{dni}")
+    public User get(String dni) {
+        return usersService.findByDni(dni);
     }
 
     @POST
