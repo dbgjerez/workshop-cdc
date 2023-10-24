@@ -18,7 +18,7 @@ public class TestHandler {
   @GET
   @Path("/{id}")
   public Set<UserDTO> get(String id) {
-    return userClient.getById(id);
+    return userClient.getByDni(id);
   }
 
 }

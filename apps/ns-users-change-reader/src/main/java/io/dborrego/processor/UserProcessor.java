@@ -63,19 +63,20 @@ public class UserProcessor {
                                 throw new Exception("El dni del usuario no puede ser null");
                         }
                         if (operation.equals("c")) {
-                                final Set<UserDTO> findState = userClient.getById(user.getDni());
+                                final Set<UserDTO> findState = userClient.getByDni(user.getDni());
                                 LOGGER.info(String.format("Encontrados %d usuarios con dni [%s]", findState.size(),
                                                 user.getDni()));
                                 if (findState.size() > 0) {
                                         LOGGER.info(String.format("El usuario %s %s con DNI %s ya existe",
                                                         user.getFirstName(),
                                                         user.getLastName(), user.getDni()));
-                                        userClient.update(user, user.getDni());
+                                        userClient.update(user, findState.stream().findAny().map(UserDTO::getId).get());
                                 } else {
                                         userClient.create(user);
                                 }
                         } else if (operation.equals("u")) {
-                                userClient.update(user, user.getDni());
+                                userClient.update(user, userClient.getByDni(user.getDni()).stream().findAny().map(
+                                                UserDTO::getId).get());
                         }
                 } catch (Exception e) {
                         LOGGER.warning(String.format("Error, with operation %s for %s", operation, e.getMessage()));

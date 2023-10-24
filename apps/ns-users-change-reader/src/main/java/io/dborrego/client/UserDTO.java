@@ -1,12 +1,21 @@
 package io.dborrego.client;
 
 public class UserDTO {
+    private Long id;
     private String firstName;
     private String lastName;
     private String dni;
     private String phone;
     private String gender;
     private String email;
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     @Override
     public String toString() {
