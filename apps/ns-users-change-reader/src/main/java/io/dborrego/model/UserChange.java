@@ -68,4 +68,17 @@ public class UserChange {
         this.email = email;
     }
 
+    @Override
+    public String toString() {
+        return "{" +
+                " id='" + getId() + "'" +
+                ", dni='" + getDni() + "'" +
+                ", firstName='" + getFirstName() + "'" +
+                ", gender='" + getGender() + "'" +
+                ", lastName='" + getLastName() + "'" +
+                ", phone='" + getPhone() + "'" +
+                ", email='" + getEmail() + "'" +
+                "}";
+    }
+
 }

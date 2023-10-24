@@ -44,4 +44,14 @@ public class PayloadChange {
         this.before = before;
     }
 
+    @Override
+    public String toString() {
+        return "{" +
+                " after='" + getAfter() + "'" +
+                ", before='" + getBefore() + "'" +
+                ", source='" + getSource() + "'" +
+                ", operation='" + getOperation() + "'" +
+                "}";
+    }
+
 }

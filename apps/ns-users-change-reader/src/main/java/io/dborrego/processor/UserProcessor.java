@@ -27,31 +27,43 @@ public class UserProcessor {
 
         @Incoming("users-fr")
         public void readerFr(Change change) {
-                final String operation = extractOperation.apply(change);
-                final String db = extractDatabase.apply(change);
-                final String table = extractTable.apply(change);
-                LOGGER.info(String.format("Received operation [%s] in db [%s] and table [%s] - %s",
-                                operation, db, table, change));
-                final UserDTO user = extractUser(change.getPayload().getAfter());
-                if (operation.equals("c")) {
-                        userClient.create(user);
-                } else {
-                        userClient.update(user, user.getDni());
+                try {
+                        processChange(change, "users-fr");
+                } catch (RuntimeException e) {
+                        LOGGER.warning(String.format("Error no controlado al procesar mensaje: %s",
+                                        change != null ? change.toString() : "change is null"));
                 }
         }
 
         @Incoming("users-pt")
         public void readerPt(Change change) {
+                try {
+                        processChange(change, "users-pt");
+                } catch (RuntimeException e) {
+                        LOGGER.warning(String.format("Error no controlado al procesar mensaje: %s",
+                                        change != null ? change.toString() : "change is null"));
+                }
+        }
+
+        private void processChange(Change change, String channel) {
                 final String operation = extractOperation.apply(change);
+                LOGGER.info(String.format("Operación a realizar: %s", operation));
                 final String db = extractDatabase.apply(change);
                 final String table = extractTable.apply(change);
-                LOGGER.info(String.format("Received operation [%s] in db [%s] and table [%s] - %s",
-                                operation, db, table, change));
+                LOGGER.info(String.format("Cambio a realizar en canal %s, base de datos %s y tabla %s", channel, db,
+                                table));
+                LOGGER.info(String.format("Usuario anterior: %s",
+                                change.getPayload().getBefore() != null ? change.getPayload().getBefore() : "null"));
+                LOGGER.info(String.format("Usuario posterior: %s", change.getPayload().getAfter().toString()));
                 final UserDTO user = extractUser(change.getPayload().getAfter());
-                if (operation.equals("c")) {
-                        userClient.create(user);
-                } else {
-                        userClient.update(user, user.getDni());
+                try {
+                        if (operation.equals("c")) {
+                                userClient.create(user);
+                        } else if (operation.equals("u")) {
+                                userClient.update(user, user.getDni());
+                        }
+                } catch (Exception e) {
+                        LOGGER.warning(String.format("Error, with operation %s for %s", operation, e.getMessage()));
                 }
         }
 

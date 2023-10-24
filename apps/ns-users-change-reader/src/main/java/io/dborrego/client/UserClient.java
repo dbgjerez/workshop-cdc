@@ -7,7 +7,7 @@ import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.QueryParam;
 
-@Path("/user")
+@Path("/users")
 @RegisterRestClient(configKey = "client-user")
 public interface UserClient {
 
