@@ -40,15 +40,14 @@ public class UserService {
 
     @Transactional
     public User update(final User u, Long idUser) {
-        User user = usersRepository.findById(idUser);
+        final User user = usersRepository.findById(idUser);
         Log.info(String.format("Encontrado usuario con dni [%s] e id [%d]", user.getDni(), user.getId()));
         user.setFirstName(u.getFirstName());
         user.setLastName(u.getLastName());
         user.setDni(u.getDni());
         user.setEmail(u.getEmail() != null ? u.getEmail() : user.getEmail());
         user.setGender(u.getGender() != null ? u.getGender() : user.getGender());
-        user.setPhone(u.getPhone().isBlank() ? u.getPhone() : user.getPhone());
-        usersRepository.persistAndFlush(user);
+        user.setPhone(u.getPhone() != null ? u.getPhone() : user.getPhone());
         return user;
     }
 
