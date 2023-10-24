@@ -5,6 +5,7 @@ import java.util.function.Function;
 
 import org.eclipse.microprofile.reactive.messaging.Incoming;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
+import org.jboss.logmanager.Logger;
 
 import io.dborrego.client.UserClient;
 import io.dborrego.client.UserDTO;
@@ -17,6 +18,8 @@ import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 public class UserProcessor {
+
+        private static final Logger LOGGER = Logger.getLogger(UserProcessor.class.getName());
 
         private static final String NOT_FOUND = "NOT_FOUND";
 
