@@ -63,16 +63,16 @@ public class UserProcessor {
                                 throw new Exception("El dni del usuario no puede ser null");
                         }
                         if (operation.equals("c")) {
-                                final UserDTO findState = tmpGetDni(user.getDni());
-                                if (findState != null) {
+                                final Optional<UserDTO> findState = tmpGetDni(user.getDni());
+                                if (findState.isPresent()) {
                                         LOGGER.info(String.format("Encontrado otro usuario con dni [%s]",
-                                                        findState.getDni()));
-                                        userClient.update(user, findState.getId());
+                                                        findState.get().getDni()));
+                                        userClient.update(user, findState.get().getId());
                                 } else {
                                         userClient.create(user);
                                 }
                         } else if (operation.equals("u")) {
-                                userClient.update(user, tmpGetDni(user.getDni()).getId());
+                                userClient.update(user, tmpGetDni(user.getDni()).get().getId());
                         }
                 } catch (Exception e) {
                         LOGGER.warning(String.format("Error, with operation %s for %s", operation, e.getStackTrace()));
@@ -84,11 +84,13 @@ public class UserProcessor {
          * 
          * @param dni
          */
-        private UserDTO tmpGetDni(String dni) {
+        private Optional<UserDTO> tmpGetDni(String dni) {
                 return userClient.getAllUsers()
                                 .stream()
+                                .peek(u -> LOGGER.info(String.format("Filtrando usuario %s con dni %s",
+                                                u.getFirstName(), u.getDni())))
                                 .filter(u -> u.getDni() != null && u.getDni().equals(dni))
-                                .findAny().orElse(null);
+                                .findAny();
         }
 
         private UserDTO extractUser(UserChange after) {
