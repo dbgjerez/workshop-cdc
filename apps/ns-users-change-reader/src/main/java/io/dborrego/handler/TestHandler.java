@@ -1,6 +1,7 @@
 package io.dborrego.handler;
 
-import java.util.Set;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 
@@ -17,8 +18,9 @@ public class TestHandler {
 
   @GET
   @Path("/{id}")
-  public Set<UserDTO> get(String id) {
-    return userClient.getByDni(id);
+  public List<UserDTO> get(String id) {
+    return userClient.getAllUsers().stream().filter(u -> u.getDni() != null && u.getDni().equals(id))
+        .collect(Collectors.toList());
   }
 
 }

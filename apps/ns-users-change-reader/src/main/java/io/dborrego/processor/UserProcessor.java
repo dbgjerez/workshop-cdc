@@ -1,7 +1,6 @@
 package io.dborrego.processor;
 
 import java.util.Optional;
-import java.util.Set;
 import java.util.function.Function;
 import java.util.logging.Logger;
 
@@ -41,8 +40,9 @@ public class UserProcessor {
                 try {
                         processChange(change, "users-pt");
                 } catch (RuntimeException e) {
-                        LOGGER.warning(String.format("Error no controlado al procesar mensaje: %s",
-                                        change != null ? change.toString() : "change is null"));
+                        LOGGER.warning(String.format("Error no controlado al procesar el mensaje [%s] por [%s]",
+                                        change != null ? change.toString() : "change is null",
+                                        e.getMessage()));
                 }
         }
 
@@ -63,24 +63,32 @@ public class UserProcessor {
                                 throw new Exception("El dni del usuario no puede ser null");
                         }
                         if (operation.equals("c")) {
-                                final Set<UserDTO> findState = userClient.getByDni(user.getDni());
-                                LOGGER.info(String.format("Encontrados %d usuarios con dni [%s]", findState.size(),
-                                                user.getDni()));
-                                if (findState.size() > 0) {
-                                        LOGGER.info(String.format("El usuario %s %s con DNI %s ya existe",
-                                                        user.getFirstName(),
-                                                        user.getLastName(), user.getDni()));
-                                        userClient.update(user, findState.stream().findAny().map(UserDTO::getId).get());
+                                final UserDTO findState = tmpGetDni(user.getDni());
+                                if (findState != null) {
+                                        LOGGER.info(String.format("Encontrado otro usuario con dni [%s]",
+                                                        findState.getDni()));
+                                        userClient.update(user, findState.getId());
                                 } else {
                                         userClient.create(user);
                                 }
                         } else if (operation.equals("u")) {
-                                userClient.update(user, userClient.getByDni(user.getDni()).stream().findAny().map(
-                                                UserDTO::getId).get());
+                                userClient.update(user, tmpGetDni(user.getDni()).getId());
                         }
                 } catch (Exception e) {
-                        LOGGER.warning(String.format("Error, with operation %s for %s", operation, e.getMessage()));
+                        LOGGER.warning(String.format("Error, with operation %s for %s", operation, e.getStackTrace()));
                 }
+        }
+
+        /**
+         * TODO this is a bad workaroud while the client and ms-user are broken
+         * 
+         * @param dni
+         */
+        private UserDTO tmpGetDni(String dni) {
+                return userClient.getAllUsers()
+                                .stream()
+                                .filter(u -> u.getDni() != null && u.getDni().equals(dni))
+                                .findAny().orElse(null);
         }
 
         private UserDTO extractUser(UserChange after) {

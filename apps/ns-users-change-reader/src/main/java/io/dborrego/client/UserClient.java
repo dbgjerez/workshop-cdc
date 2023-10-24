@@ -1,9 +1,8 @@
 package io.dborrego.client;
 
-import java.util.Set;
+import java.util.List;
 
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
-import org.jboss.resteasy.reactive.RestQuery;
 
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
@@ -22,6 +21,9 @@ public interface UserClient {
     public void create(UserDTO user);
 
     @GET
-    public Set<UserDTO> getByDni(@RestQuery("dni") String dni);
+    public List<UserDTO> getAllUsers();
+
+    // @GET
+    // public Set<UserDTO> getByDni(@QueryParam("dni") String dni);
 
 }
