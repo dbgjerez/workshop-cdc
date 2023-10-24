@@ -51,7 +51,6 @@ public class UserService {
         entity.setEmail(u.getEmail() != null ? u.getEmail() : entity.getEmail());
         entity.setGender(u.getGender() != null ? u.getGender() : entity.getGender());
         entity.setPhone(u.getPhone() != null ? u.getPhone() : entity.getPhone());
-        
         return entity;
     }
 
