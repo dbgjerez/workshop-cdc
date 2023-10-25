@@ -1,8 +1,15 @@
 # s-users-pt
 
-## Local development
+## Frameworks and librearies
 
-### MariaDB
+* Quarkus
+* MariaDB
+
+## Lifecycle
+
+### Local development
+
+The application needs a ```MariaDB``` database running to run correctly. So, we'll start a container with MariaDB using ```podman```.
 
 ```bash
 podman run \
@@ -16,6 +23,31 @@ podman run \
     mariadb:latest
 ```
 
+Now, we can start the application with the ```Maven``` command:
+
+```bash
+mvn quarkus:dev
+```
+
+### Production build
+
+We will compile a native image, using ```Maven```:
+
+```bash
+mvn package \
+    -Pnative \
+    -Dquarkus.native.container-build=true
+```
+
+After some minutes, we can build the final image:
+
+```bash
+podman build \
+    --no-cache \
+    -f src/main/docker/Dockerfile.native-micro \
+    -t quay.io/dborrego/cdc-s-users-pt:0.1 .
+```
+
 ### API
 
 #### Create an user
@@ -26,35 +58,8 @@ curl -X POST \
                 "firstName":"David", 
                 "lastName":"Borrego", 
                 "dni":"00000000C", 
-                "phone":"+34 123 456 789", 
-                "gender": "H" 
+                "email": "dborrego@redhat.com" 
             }' \
     -H 'Content-Type: application/json' \
     localhost:8080/users
-```
-
-## Running the application in dev mode
-
-You can run your application in dev mode that enables live coding using:
-
-```shell script
-mvn quarkus:dev
-```
-
-## Native compilation
-
-### Creating a native executable
-
-You can create a native executable using: 
-
-```shell script
-mvn package -Pnative -Dquarkus.native.container-build=true
-```
-
-You can then execute your native executable with: `./target/s-users-fr-0.1-runner`
-
-### Build a native container
-
-```shell script
-podman build --no-cache -f src/main/docker/Dockerfile.native-micro -t quay.io/dborrego/cdc-s-users-pt:0.1 .
 ```
