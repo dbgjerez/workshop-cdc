@@ -1,8 +1,15 @@
 # ms-users
 
-## Local development
+## Frameworks and librearies
 
-### MariaDB
+* Quarkus
+* MariaDB
+
+## Lifecycle
+
+### Local development
+
+The application needs a ```MariaDB``` database running to run correctly. So, we'll start a container with MariaDB using ```podman```.
 
 ```bash
 podman run \
@@ -16,45 +23,26 @@ podman run \
     mariadb:latest
 ```
 
-### API
-
-#### Create an user
+Now, we can start the application with the ```Maven``` command:
 
 ```bash
-curl -X POST \
-    --data '{ 
-                "firstName":"David", 
-                "lastName":"Borrego", 
-                "dni":"00000000C", 
-                "phone":"+34 123 456 789", 
-                "gender": "H" 
-            }' \
-    -H 'Content-Type: application/json' \
-    localhost:8080/users
-```
-
-## Running the application in dev mode
-
-You can run your application in dev mode that enables live coding using:
-
-```shell script
 mvn quarkus:dev
 ```
 
-## Native compilation
+### Production build
 
-### Creating a native executable
+We will compile a native image, using ```Maven```:
 
-You can create a native executable using: 
-
-```shell script
-mvn package -Pnative -Dquarkus.native.container-build=true
+```bash
+mvn package \
+    quarkus:image-build
 ```
 
-You can then execute your native executable with: `./target/s-users-fr-0.1-runner`
+And now, we'll tag the application with the correct version and name:
 
-### Build a native container
-
-```shell script
-podman build --no-cache -f src/main/docker/Dockerfile.native-micro -t quay.io/dborrego/cdc-ms-users:0.1 .
+```bash
+podman image tag \
+    b0rr3g0/ms-users:1.0.0-SNAPSHOT \
+    quay.io/dborrego/cdc-ms-users:0.2.16
 ```
+
