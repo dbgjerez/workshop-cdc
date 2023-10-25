@@ -1,0 +1,7 @@
+service:
+  name: s-users-fr
+mariadb:
+  server: 
+    id: 223344
+  database: users
+  user: users

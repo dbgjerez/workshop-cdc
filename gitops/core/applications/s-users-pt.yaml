@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: s-users-pt
+  namespace: openshift-gitops
+spec:
+  destination:
+    namespace: demo
+    server: "https://kubernetes.default.svc"
+  source:
+    path: apps/s-users-pt/gitops
+    repoURL: "https://github.com/dbgjerez/workshop-cdc"
+    targetRevision: 3-legacy-system-window
+    helm:
+      valueFiles:
+      - 'dev.values.yaml'
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: false

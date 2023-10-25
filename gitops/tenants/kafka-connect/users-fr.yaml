@@ -3,21 +3,21 @@ kind: KafkaConnector
 metadata:
   labels:
     strimzi.io/cluster: kafka
-  name: mariadb-debezium-users-spa
+  name: mariadb-debezium-users-fr
 spec:
   class: io.debezium.connector.mysql.MySqlConnector
   config:
-    database.hostname: mariadb-users-spa.demo
+    database.hostname: mariadb-s-users-fr.demo
     database.port: 3306
     database.user: root
     database.password: parking1234
     database.server.id: "223344"
-    database.server.name: "mariadb-users-spa"
+    database.server.name: "mariadb-s-users-fr"
     database.whitelist: users
-    topic.prefix: "demo"
-    schema.history.internal.kafka.topic: "history.demo"
+    topic.prefix: "fr"
+    schema.history.internal.kafka.topic: "history.demo.fr"
     schema.history.internal.kafka.bootstrap.servers: 'kafka-kafka-bootstrap:9092'
     database.history.kafka.bootstrap.servers: 'kafka-kafka-bootstrap:9092'
-    database.history.kafka.topic: "history.demo"
+    database.history.kafka.topic: "history.demo.fr"
     include.schema.changes: "false" 
   tasksMax: 1

@@ -1,0 +1,12 @@
+# build environment
+FROM node:alpine as build
+WORKDIR /app
+COPY package.json /app/
+RUN npm install
+COPY ./ /app/
+RUN npm run build
+
+# production environment
+FROM registry.access.redhat.com/ubi8/nginx-120
+COPY --from=build /app/build .
+CMD ["nginx", "-g", "daemon off;"]

@@ -5,7 +5,7 @@ metadata:
 data:
   primary.cnf: |
     [mariadb]
-    server-id         = 223344
+    server-id         = {{ .Values.mariadb.server.id }}
     log_bin           = mysql-bin
     binlog_format     = ROW
     binlog_row_image  = FULL

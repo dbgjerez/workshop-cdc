@@ -7,9 +7,11 @@ spec:
   generators:
   - list:
       elements:
-      - app: users-spa
+      - app: users-fr
         namespace: demo
       - app: users-pt
+        namespace: demo
+      - app: users
         namespace: demo
   template:
     metadata: 
@@ -24,14 +26,11 @@ spec:
       source:
         path: gitops/tenants/mariadb/
         repoURL: "https://github.com/dbgjerez/workshop-cdc"
-        targetRevision: "1-structure"
+        targetRevision: 3-legacy-system-window
         helm:
           valueFiles:
             - '{{app}}.values.yaml'
       project: default
       syncPolicy:
-        automated:
-          prune: true
-          selfHeal: false
         syncOptions:
           - CreateNamespace=true
