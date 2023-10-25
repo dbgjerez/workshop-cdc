@@ -107,13 +107,13 @@ public class UserProcessor {
                 user.setDni(after.getDni());
                 user.setFirstName(after.getFirstName());
                 user.setLastName(after.getLastName());
-                if (after.getGender() != null && !after.getGender().isEmpty()) {
+                if (after.getGender() != null && after.getGender() != "") {
                         user.setGender(after.getGender());
                 }
-                if (after.getPhone() != null && after.getPhone().isEmpty()) {
+                if (after.getPhone() != null && after.getPhone() != "") {
                         user.setPhone(after.getPhone());
                 }
-                if (after.getEmail() != null && after.getEmail().isEmpty()) {
+                if (after.getEmail() != null && after.getEmail() != "") {
                         user.setEmail(after.getEmail());
                 }
                 return user;
