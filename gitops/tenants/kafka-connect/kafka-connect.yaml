@@ -16,8 +16,11 @@ spec:
     - name: debezium-connector-mysql
       artifacts:
       - type: zip
-        url: https://maven.repository.redhat.com/ga/io/debezium/debezium-connector-mysql/2.1.4.Final-redhat-00001/debezium-connector-mysql-2.1.4.Final-redhat-00001-plugin.zip
-        sha512sum: cb8ca43cc19b0a6cd705ccf77f5d29757493a61b4398226ef8b02cfc5cbea8dd3b76321c5ae669d4b526379896d068097bfa7189d237ffefbc9fdc8a03596498
+        url: https://maven.repository.redhat.com/ga/io/debezium/debezium-connector-mysql/2.3.4.Final-redhat-00001/debezium-connector-mysql-2.3.4.Final-redhat-00001-plugin.zip
+        sha512sum: 16d9b74375d2561ef851b681b9957783b13ae5bf78ed52008d314939d6f38701ffdbe0d1208bf9e4a441631643338b36ad353aed52bea34aeb61d83d9e756783
+      - type: zip
+        url: https://maven.repository.redhat.com/ga/io/apicurio/apicurio-registry-distro-connect-converter/2.4.4.Final-redhat-00002/apicurio-registry-distro-connect-converter-2.4.4.Final-redhat-00002.zip
+        sha512sum: 8269c007e4b58d95db72ab8364c6a619d2762081a2d6b55102ccbf47f4c2219be6bfa1c212ae5bcc6cdfcaeae3415f6b0e4416c40bfd91270ef45dd1787b286a
   bootstrapServers: 'kafka-kafka-bootstrap:9092'
   config:
     group.id: kafka-connect
