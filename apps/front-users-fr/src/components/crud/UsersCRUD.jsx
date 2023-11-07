@@ -22,7 +22,7 @@ const UserCRUD = (config) => {
             headers: { 'Content-Type': 'application/json' },
         };
     
-        fetch(`${config.config.host}:${config.config.port}${config.config.delete}/${id}`, requestOptions)
+        fetch(window.appConfig.BACKEND_USERS_URL+ config.config.domain + "/" + id, requestOptions)
             .then((res) => {
                 if (!res.ok) {
                     throw new Error(res.status);
@@ -49,7 +49,7 @@ const UserCRUD = (config) => {
             body: JSON.stringify(item)
         };
     
-        fetch(`${config.config.host}:${config.config.port}${config.config.update}/${item.id}`, requestOptions)
+        fetch(window.appConfig.BACKEND_USERS_URL + config.config.domain + "/" + item.id, requestOptions)
             .then((res) => {
                 if (!res.ok) {
                     throw new Error(res.status);
@@ -71,7 +71,7 @@ const UserCRUD = (config) => {
             body: JSON.stringify(item)
         };
     
-        fetch(config.config.host + ":" + config.config.port + config.config.create, requestOptions)
+        fetch(window.appConfig.BACKEND_USERS_URL + config.config.domain, requestOptions)
             .then((res) => {
                 if (!res.ok) {
                     throw new Error(res.status);
@@ -94,7 +94,7 @@ const genders = [
 ]
 
     const updateScreen = () => {
-        fetch(config.config.host+":"+config.config.port+config.config.getAll)  
+        fetch(window.appConfig.BACKEND_USERS_URL+config.config.domain)  
             .then(
                 (res) => {
                     if(!res.ok) throw new Error(res.status)

@@ -16,6 +16,10 @@ deployment:
       cpu: 100m
       memory: 16Mi
 
+backend:
+  users:
+    url: https://backend-users-fr.com
+
 config:
   env:
     - name: SERVICE_NAME
