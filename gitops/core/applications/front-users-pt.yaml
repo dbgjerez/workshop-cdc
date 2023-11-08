@@ -1,17 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: front-users-fr
+  name: front-users-pt
   namespace: openshift-gitops
   labels: 
-    app: front-users-fr
+    app: front-users-pt
     type: frontend
 spec:
   destination:
     namespace: demo
     server: "https://kubernetes.default.svc"
   source:
-    path: apps/front-users-fr/gitops
+    path: apps/front-users-pt/gitops
     repoURL: "https://github.com/dbgjerez/workshop-cdc"
     targetRevision: main
     helm:
