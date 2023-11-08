@@ -20,9 +20,17 @@ spec:
         ns: {{ .Release.Namespace | quote }}
         version: {{ .Values.service.version | quote }}
     spec:
+      volumes:
+      - name: react-config
+        configMap:
+          name: {{ .Values.service.name }}
       containers:
         - name: {{ .Values.service.name }}
           image: {{ .Values.service.image }}:{{ .Values.service.version }}
+          volumeMounts:
+            - name: react-config
+              mountPath: /opt/app-root/src/config.js
+              subPath: config.js
           env:
           {{- range .Values.config.env }}
           {{- $envItem := . -}}

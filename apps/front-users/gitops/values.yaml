@@ -1,6 +1,6 @@
 service:
-  name: front-users-fr
-  image: quay.io/dborrego/cdc-front-users-fr
+  name: front-users
+  image: quay.io/dborrego/cdc-front-users
 
 deployment:
   replicas: 2
@@ -18,7 +18,3 @@ deployment:
 
 config:
   env:
-    - name: SERVICE_NAME
-      value: no-default-value
-    - name: SERVICE_VERSION
-      value: no-default-value
