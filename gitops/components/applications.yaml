@@ -10,5 +10,5 @@ spec:
   source:
     path: gitops/core/applications
     repoURL: "https://github.com/dbgjerez/workshop-cdc"
-    targetRevision: 3-legacy-system-window
+    targetRevision: main
   project: default

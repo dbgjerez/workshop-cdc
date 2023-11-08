@@ -10,7 +10,7 @@ spec:
   source:
     path: apps/front-users-fr/gitops
     repoURL: "https://github.com/dbgjerez/workshop-cdc"
-    targetRevision: 3-legacy-system-window
+    targetRevision: main
     helm:
       valueFiles:
       - 'dev.values.yaml'

@@ -10,7 +10,7 @@ spec:
   source:
     path: apps/ns-users-change-reader/gitops
     repoURL: "https://github.com/dbgjerez/workshop-cdc"
-    targetRevision: 3-legacy-system-window
+    targetRevision: main
     helm:
       valueFiles:
       - 'dev.values.yaml'

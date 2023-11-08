@@ -10,7 +10,7 @@ spec:
   source:
     path: gitops/core/operators
     repoURL: "https://github.com/dbgjerez/workshop-cdc"
-    targetRevision: 3-legacy-system-window
+    targetRevision: main
   project: default
   syncPolicy:
     automated:

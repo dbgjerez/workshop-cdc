@@ -26,7 +26,7 @@ spec:
       source:
         path: gitops/tenants/mariadb/
         repoURL: "https://github.com/dbgjerez/workshop-cdc"
-        targetRevision: 3-legacy-system-window
+        targetRevision: main
         helm:
           valueFiles:
             - '{{app}}.values.yaml'
