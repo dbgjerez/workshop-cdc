@@ -15,7 +15,7 @@ npm start
 
 ### Production
 
-This mode generates the static files to execute the applicaiton.
+This mode generates the static files to execute the application.
 
 ```bash
 npm run build

@@ -1,5 +1,5 @@
 service:
-  version: 0.2.3
+  version: 0.2
 
 deployment:
   port: 8080
@@ -7,9 +7,9 @@ deployment:
     liveness: /
     readiness: /
 
+backend:
+  users:
+    url: https://backend-users.com
+
 config:
   env:
-    - name: SERVICE_NAME
-      value: front-users-fr
-    - name: SERVICE_VERSION
-      value: 0.1

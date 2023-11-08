@@ -16,7 +16,7 @@ const UserCRUD = (config) => {
   };
 
   const updateScreen = () => {
-    fetch(config.config.host + ":" + config.config.port + config.config.getAll)
+    fetch(window.appConfig.BACKEND_USERS_URL + config.config.domain)
       .then((res) => {
         if (!res.ok) throw new Error(res.status);
         else return res.json();
