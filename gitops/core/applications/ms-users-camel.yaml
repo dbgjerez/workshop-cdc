@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ms-users-camel
+  namespace: openshift-gitops
+spec:
+  destination:
+    namespace: demo
+    server: "https://kubernetes.default.svc"
+  source:
+    path: apps/ms-users-camel/gitops
+    repoURL: "https://github.com/dbgjerez/workshop-cdc"
+    targetRevision: feature/mongodb-front
+    helm:
+      valueFiles:
+      - 'dev.values.yaml'
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: false

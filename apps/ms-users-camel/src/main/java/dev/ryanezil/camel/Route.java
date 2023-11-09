@@ -13,11 +13,11 @@ public class Route extends RouteBuilder {
 
         restConfiguration().bindingMode(RestBindingMode.json);
 
-        rest("/citizens")
+        rest("/users")
                 .get()
-                .to("direct:getCitizens");
+                .to("direct:getUsers");
 
-        from("direct:getCitizens")
+        from("direct:getUsers")
             .to("mongodb:camelMongoClient?database={{mongodb.database}}&collection={{mongodb.users.collection}}&operation=findAll")
             .log("Retrieved values from MongoDB >>>> ${body}");
 
