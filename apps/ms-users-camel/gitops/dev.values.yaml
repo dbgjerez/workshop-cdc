@@ -3,7 +3,5 @@ service:
 
 config:
   env:
-    - name: MONGODB_CONNECTION_STRING
-      value: mongodb://root:example@mongodb:27017
     - name: MONGODB_COLLECTION
       value: users
