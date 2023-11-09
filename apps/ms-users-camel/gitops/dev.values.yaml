@@ -1,0 +1,7 @@
+service:
+  version: 0.1
+
+config:
+  env:
+    - name: MONGODB_COLLECTION
+      value: users

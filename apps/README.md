@@ -9,3 +9,4 @@
 | [front-users-fr](front-users-fr/README.md)         | Frontent | ---          | France users frontend                                                                                                   |
 | [front-users](front-users/README.md)            | Frontent | ---          | Frontend where you can see the consolidate data                                                                         |
 | [ns-users-change-reader](ns-users-change-reader/README.md) | Banckend | Nanoservice  | Application that reads from a topic where KafkaConnect store the data. It's call to ms-users with the consolidated data |
+| [mongodb-front](mongodb-front/README.md) | Frontend+Backend | Nanoservice | Application that list all the documents in a MongoDB collection. Exposes a basic REST API with the GET method, and includes a front at http://hostname/citizens.html  |

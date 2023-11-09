@@ -32,5 +32,8 @@ spec:
             - '{{app}}.values.yaml'
       project: default
       syncPolicy:
+        automated:
+          prune: true
+          selfHeal: false
         syncOptions:
-          - CreateNamespace=true
+          - CreateNamespace=true    

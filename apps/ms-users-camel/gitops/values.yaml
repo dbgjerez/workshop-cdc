@@ -1,0 +1,21 @@
+service:
+  name: ms-users-camel
+  image: quay.io/dborrego/cdc-ms-users-camel
+  version: 0.1
+
+deployment:
+  replicas: 1
+  port: 8080
+  health:
+    liveness: /q/health/live
+    readiness: /q/health/ready
+  resources: 
+    limits:
+      cpu: 500m
+      memory: 1024Mi
+    requests:
+      cpu: 100m
+      memory: 256Mi
+
+config:
+  env:
