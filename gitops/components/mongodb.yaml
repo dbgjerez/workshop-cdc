@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: mongodb
+  namespace: openshift-gitops
+spec:
+  destination:
+    namespace: demo
+    server: "https://kubernetes.default.svc"
+  source:
+    path: feature/mongodb-front
+    repoURL: "https://github.com/dbgjerez/workshop-cdc"
+    targetRevision: feature/mongodb-front
+  project: default
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
