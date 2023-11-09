@@ -8,7 +8,7 @@ spec:
     namespace: demo
     server: "https://kubernetes.default.svc"
   source:
-    path: feature/mongodb-front
+    path: gitops/tenants/mongodb/
     repoURL: "https://github.com/dbgjerez/workshop-cdc"
     targetRevision: feature/mongodb-front
   project: default
