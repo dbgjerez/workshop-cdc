@@ -1,0 +1,10 @@
+apiVersion: registry.apicur.io/v1
+kind: ApicurioRegistry
+metadata:
+  name: apicurio-registry
+  namespace: kafka  
+spec:
+  configuration:
+    persistence: 'kafkasql'
+    kafkasql:
+      bootstrapServers: 'kafka-kafka-bootstrap:9092'
