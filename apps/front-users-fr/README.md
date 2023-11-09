@@ -25,7 +25,7 @@ npm run build
 
 ```bash
 SERVICE_NAME=cdc-front-users-fr
-SERVICE_VERSION=0.1
+SERVICE_VERSION=0.4
 podman build \
     -t quay.io/dborrego/$SERVICE_NAME:$SERVICE_VERSION \
     -f Containerfile.run
