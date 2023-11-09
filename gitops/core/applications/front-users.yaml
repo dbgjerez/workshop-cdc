@@ -19,6 +19,5 @@ spec:
       - 'dev.values.yaml'
   project: default
   syncPolicy:
-    automated:
-      prune: true
-      selfHeal: false
+    syncOptions:
+      - CreateNamespace=true  
