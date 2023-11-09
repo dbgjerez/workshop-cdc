@@ -13,5 +13,8 @@ spec:
     targetRevision: feature/mongodb-front
   project: default
   syncPolicy:
+    automated:
+      prune: true
+      selfHeal: false
     syncOptions:
       - CreateNamespace=true
