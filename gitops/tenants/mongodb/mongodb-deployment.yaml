@@ -2,22 +2,22 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: mongo
-  name: mongo
+    app: mongodb
+  name: mongodb
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mongo
+      app: mongodb
   strategy: {}
   template:
     metadata:
       labels:
-        app: mongo
+        app: mongodb
     spec:
       containers:
       - image: mongo:5.0
-        name: mongo
+        name: mongodb
         args: ["--dbpath","/data/db"]
         livenessProbe:
           exec:
@@ -60,4 +60,4 @@ spec:
       volumes:
       - name: "mongo-data-dir"
         persistentVolumeClaim:
-          claimName: "mongo-data"
+          claimName: "mongodb"
