@@ -47,12 +47,12 @@ spec:
         - name: MONGO_INITDB_ROOT_USERNAME
           valueFrom:
             secretKeyRef:
-              name: mongo-creds
+              name: mongodb
               key: username
         - name: MONGO_INITDB_ROOT_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: mongo-creds
+              name: mongodb
               key: password
         volumeMounts:
         - name: "mongo-data-dir"
