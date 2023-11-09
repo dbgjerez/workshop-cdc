@@ -10,7 +10,7 @@ spec:
   source:
     path: gitops/tenants/service-registry
     repoURL: "https://github.com/dbgjerez/workshop-cdc"
-    targetRevision: 3-legacy-system-window
+    targetRevision: 13-ns-users-change-reader-schema-registry-integration
   project: default
   syncPolicy:
     syncOptions:

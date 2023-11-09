@@ -9,4 +9,3 @@ spec:
   name: service-registry-operator
   source: redhat-operators
   sourceNamespace: openshift-marketplace
-
