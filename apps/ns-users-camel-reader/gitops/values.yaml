@@ -1,0 +1,33 @@
+service:
+  name: no-default-value
+  image: quay.io/dborrego/cdc-ns-users-camel-reader
+  version: 0.1
+
+deployment:
+  replicas: 1
+  port: 8080
+  health:
+    liveness: /q/health/live
+    readiness: /q/health/ready
+  resources:
+    limits:
+      cpu: 500m
+      memory: 1024Mi
+    requests:
+      cpu: 100m
+      memory: 256Mi
+
+kafka:
+  bootstrap: kafka-kafka-bootstrap.kafka:9092
+  topic: no-default-value
+  api:
+    avro: http://apicurio-registry-service:8080/apis/registry/v2
+
+atlas:
+  mapper: no-default-value
+
+mongodb:
+  collection: users
+
+config:
+  env:
