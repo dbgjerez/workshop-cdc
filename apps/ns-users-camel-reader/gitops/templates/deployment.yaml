@@ -41,6 +41,8 @@ spec:
             value: {{ .Values.kafka.api.avro }}
           - name: MONGODB_COLLECTION
             value: {{ .Values.mongodb.collection }}
+          - name: ATLASMAP_MAPPER
+            value: {{ .Values.atlas.mapper }}
           ports:
             - name: http
               containerPort: {{ .Values.deployment.port }}
