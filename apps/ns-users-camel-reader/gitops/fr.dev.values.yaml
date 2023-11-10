@@ -1,6 +1,6 @@
 service:
   name: ns-users-camel-reader-fr
-  version: 0.1
+  version: 0.1.1
 
 kafka:
   topic: fr.users.user
