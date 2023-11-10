@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: service-registry
+  namespace: openshift-gitops
+spec:
+  destination:
+    namespace: kafka
+    server: "https://kubernetes.default.svc"
+  source:
+    path: gitops/tenants/service-registry
+    repoURL: "https://github.com/dbgjerez/workshop-cdc"
+    targetRevision: 13-ns-users-change-reader-schema-registry-integration
+  project: default
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true

@@ -1,6 +1,6 @@
 # CAMEL EXTENSION FOR QUARKUS: MongoDB Front
 
-This is a basic application to list the citizens from the MongoDB collection. It exposes a basic REST API with GET method to retrieve the whole list. Also it includes a basic HTML front to show the results.
+This is a basic application to list the citizens from the MongoDB collection. It exposes a basic REST API with GET method to retrieve the whole list.
 
 ## How to call the API
 

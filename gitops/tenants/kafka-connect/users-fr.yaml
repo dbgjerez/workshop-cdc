@@ -19,5 +19,16 @@ spec:
     schema.history.internal.kafka.bootstrap.servers: 'kafka-kafka-bootstrap:9092'
     database.history.kafka.bootstrap.servers: 'kafka-kafka-bootstrap:9092'
     database.history.kafka.topic: "history.demo.fr"
-    include.schema.changes: "false" 
+    include.schema.changes: "false"
+
+    # Register AVRO schema into Service Registry
+    schema.name.adjustment.mode: avro
+    key.converter: io.apicurio.registry.utils.converter.AvroConverter
+    key.converter.apicurio.registry.url: http://apicurio-registry-service:8080/apis/registry/v2
+    key.converter.apicurio.registry.auto-register: true
+    key.converter.apicurio.registry.find-latest: true
+    value.converter: io.apicurio.registry.utils.converter.AvroConverter
+    value.converter.apicurio.registry.url: http://apicurio-registry-service:8080/apis/registry/v2
+    value.converter.apicurio.registry.auto-register: true
+    value.converter.apicurio.registry.find-latest: true    
   tasksMax: 1

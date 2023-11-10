@@ -1,0 +1,37 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: ns-users-camel-reader
+  namespace: openshift-gitops
+spec:
+  generators:
+  - list:
+      elements:
+      - country: fr
+        env: dev
+      - country: pt
+        env: dev
+  template:
+    metadata: 
+      name: 'ns-users-camel-reader-{{country}}'
+      labels: 
+        app: 'ns-users-camel-reader-{{country}}'
+        type: backend
+    spec:
+      destination:
+        namespace: demo
+        server: "https://kubernetes.default.svc"
+      source:
+        path: apps/ns-users-camel-reader/gitops/
+        repoURL: "https://github.com/dbgjerez/workshop-cdc"
+        targetRevision: 13-ns-users-change-reader-schema-registry-integration
+        helm:
+          valueFiles:
+            - '{{country}}.{{env}}.values.yaml'
+      project: default
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: false
+        syncOptions:
+          - CreateNamespace=true
