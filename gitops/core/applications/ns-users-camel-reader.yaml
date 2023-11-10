@@ -8,7 +8,9 @@ spec:
   - list:
       elements:
       - country: fr
+        env: dev
       - country: pt
+        env: dev
   template:
     metadata: 
       name: 'ns-users-camel-reader-{{country}}'
@@ -17,15 +19,15 @@ spec:
         type: backend
     spec:
       destination:
-        namespace: '{{namespace}}'
+        namespace: demo
         server: "https://kubernetes.default.svc"
       source:
-        path: apps/ns-user-camel-reader/gitops/
+        path: apps/ns-users-camel-reader/gitops/
         repoURL: "https://github.com/dbgjerez/workshop-cdc"
-        targetRevision: main
+        targetRevision: 13-ns-users-change-reader-schema-registry-integration
         helm:
           valueFiles:
-            - '{{country}}.values.yaml'
+            - '{{country}}.{{env}}.values.yaml'
       project: default
       syncPolicy:
         automated:
