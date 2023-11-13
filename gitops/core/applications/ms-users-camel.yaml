@@ -10,7 +10,7 @@ spec:
   source:
     path: apps/ms-users-camel/gitops
     repoURL: "https://github.com/dbgjerez/workshop-cdc"
-    targetRevision: feature/mongodb-front
+    targetRevision: main
     helm:
       valueFiles:
       - 'dev.values.yaml'
