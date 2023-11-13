@@ -1,4 +1,0 @@
-service:
-  version: 0.5.15
-config:
-  env:

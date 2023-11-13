@@ -1,6 +1,0 @@
-service:
-  version: 0.2.16
-config:
-  env:
-mariadb:
-  user: root
