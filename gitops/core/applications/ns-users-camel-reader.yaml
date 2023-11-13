@@ -24,7 +24,7 @@ spec:
       source:
         path: apps/ns-users-camel-reader/gitops/
         repoURL: "https://github.com/dbgjerez/workshop-cdc"
-        targetRevision: 13-ns-users-change-reader-schema-registry-integration
+        targetRevision: main
         helm:
           valueFiles:
             - '{{country}}.{{env}}.values.yaml'

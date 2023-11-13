@@ -10,7 +10,7 @@ spec:
   source:
     path: gitops/tenants/mongodb/
     repoURL: "https://github.com/dbgjerez/workshop-cdc"
-    targetRevision: feature/mongodb-front
+    targetRevision: main
   project: default
   syncPolicy:
     automated:
