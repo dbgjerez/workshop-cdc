@@ -27,15 +27,12 @@ public class MergeStrategy implements AggregationStrategy {
                 userFromMongo.setFirstName(userFromDebezium.getFirstName());
             if (userFromDebezium.getLastName() != null)
                 userFromMongo.setLastName(userFromDebezium.getLastName());
-            if (userFromDebezium.getEnriched() != null)
-                userFromMongo.setEnriched(userFromDebezium.getEnriched());
             if (userFromDebezium.getEmail() != null)
                 userFromMongo.setEmail(userFromDebezium.getEmail());
             if (userFromDebezium.getPhone() != null)
                 userFromMongo.setPhone(userFromDebezium.getPhone());
             if (userFromDebezium.getGender() != null)
                 userFromMongo.setGender(userFromDebezium.getGender());
-
             // Updated object from MongoDB is returned
             return resource;
         } else

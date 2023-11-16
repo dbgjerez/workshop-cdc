@@ -1,11 +1,11 @@
 package dev.ryanezil.camel.model;
 
-import java.time.LocalDateTime;
+import java.io.Serializable;
 
 import io.quarkus.runtime.annotations.RegisterForReflection;
 
 @RegisterForReflection
-public class Audit {
+public class Audit implements Serializable {
   private String operation;
   private String date;
   private String source;
