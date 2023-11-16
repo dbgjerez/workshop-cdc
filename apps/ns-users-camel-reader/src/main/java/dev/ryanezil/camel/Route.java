@@ -114,7 +114,6 @@ public class Route extends RouteBuilder {
                         audit.setOperation(exchange.getIn().getHeader("dbz_operation", String.class));
                         audit.setSource(exchange.getIn().getHeader("dbz_source_connector", String.class));
                         audit.setName(exchange.getIn().getHeader("dbz_source_name", String.class));
-
                         final CommonUser commonUser = exchange.getIn().getBody(CommonUser.class);
                         commonUser.getEnriched().add(audit);
                     }
