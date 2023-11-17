@@ -22,7 +22,7 @@ const UserCRUD = (config) => {
             headers: { 'Content-Type': 'application/json' },
         };
     
-        fetch(window.appConfig.BACKEND_USERS_URL + config.config.domain + id, requestOptions)
+        fetch(window.appConfig.BACKEND_USERS_URL + config.config.domain + "/" + id, requestOptions)
             .then((res) => {
                 if (!res.ok) {
                     throw new Error(res.status);

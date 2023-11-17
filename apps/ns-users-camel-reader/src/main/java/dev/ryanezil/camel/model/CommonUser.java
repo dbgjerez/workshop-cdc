@@ -1,6 +1,8 @@
 package dev.ryanezil.camel.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -11,7 +13,10 @@ public class CommonUser implements Serializable {
 
     @JsonProperty
     private String _id;
-    
+
+    @JsonProperty
+    private String dni;
+
     @JsonProperty
     private Long remoteId;
 
@@ -22,8 +27,8 @@ public class CommonUser implements Serializable {
     private String lastName;
 
     @JsonProperty
-    private String enriched;
-    
+    private List<Audit> enriched = new ArrayList<>();
+
     @JsonProperty
     private String email;
 
@@ -32,7 +37,6 @@ public class CommonUser implements Serializable {
 
     @JsonProperty
     private String gender;
-
 
     public String get_id() {
         return _id;
@@ -66,15 +70,6 @@ public class CommonUser implements Serializable {
         this.lastName = lastName;
     }
 
-    public String getEnriched() {
-        return enriched;
-    }
-
-    public void setEnriched(String enriched) {
-        this.enriched = enriched;
-    }
-
-
     public String getEmail() {
         return email;
     }
@@ -99,11 +94,27 @@ public class CommonUser implements Serializable {
         this.gender = gender;
     }
 
+    public String getDni() {
+        return this.dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+
+    public List<Audit> getEnriched() {
+        return this.enriched;
+    }
+
+    public void setEnriched(List<Audit> enriched) {
+        this.enriched = enriched;
+    }
+
     @Override
     public String toString() {
         return "CommonUser [_id=" + _id + ", remoteId=" + remoteId + ", firstName=" + firstName + ", lastName="
                 + lastName + ", enriched=" + enriched + ", email=" + email + ", phone=" + phone + ", gender=" + gender
                 + "]";
     }
-    
+
 }
