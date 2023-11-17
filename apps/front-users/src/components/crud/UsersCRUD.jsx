@@ -88,10 +88,10 @@ const UserCRUD = (config) => {
                 {isLoaded ? (
                   data.map((data) => {
                     return (
-                      <Table.Row key={data.id}>
+                      <Table.Row key={data._id}>
                         <Table.Cell>{data.firstName}</Table.Cell>
                         <Table.Cell>{data.lastName}</Table.Cell>
-                        <Table.Cell>{data.dni}</Table.Cell>
+                        <Table.Cell>{data._id}</Table.Cell>
                         <Table.Cell>{data.gender}</Table.Cell>
                         <Table.Cell>{data.phone}</Table.Cell>
                         <Table.Cell>{data.email}</Table.Cell>
