@@ -8,8 +8,7 @@ deployment:
     readiness: /
 
 backend:
-  users:
-    url: https://backend-users-fr.com
+  name: s-users-fr
 
 config:
   env:

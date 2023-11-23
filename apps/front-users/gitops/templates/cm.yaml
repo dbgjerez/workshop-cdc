@@ -5,5 +5,5 @@ metadata:
 data:
   config.js: |
     var appConfig = {
-      "BACKEND_USERS_URL": {{.Values.backend.users.url | quote}}
-    };
+      "BACKEND_USERS_URL": {{ (lookup "route.openshift.io/v1" "Route" .Release.Namespace .Values.backend.name).spec.host | quote }}
+    };  
