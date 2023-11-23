@@ -16,5 +16,8 @@ deployment:
       cpu: 100m
       memory: 16Mi
 
+backend:
+  name: no-default-value
+
 config:
   env:
