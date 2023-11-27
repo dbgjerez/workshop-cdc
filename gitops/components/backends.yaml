@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: backends
+  namespace: openshift-gitops
+spec:
+  destination:
+    namespace: openshift-applications
+    server: "https://kubernetes.default.svc"
+  source:
+    path: gitops/core/backends
+    repoURL: "https://github.com/dbgjerez/workshop-cdc"
+    targetRevision: main
+  project: default

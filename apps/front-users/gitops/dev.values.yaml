@@ -8,8 +8,7 @@ deployment:
     readiness: /
 
 backend:
-  users:
-    url: https://backend-users.com
+  name: ms-users-camel
 
 config:
   env:

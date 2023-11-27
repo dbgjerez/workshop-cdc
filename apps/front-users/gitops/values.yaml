@@ -3,7 +3,7 @@ service:
   image: quay.io/dborrego/cdc-front-users
 
 deployment:
-  replicas: 2
+  replicas: 1
   port: 8080
   health:
     liveness: /api/v1/health
@@ -15,6 +15,9 @@ deployment:
     requests:
       cpu: 100m
       memory: 16Mi
+
+backend:
+  name: no-default-value
 
 config:
   env:
