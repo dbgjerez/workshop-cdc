@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: {{ .Values.service.name }}
+  name: {{ .Values.service.name }}-pre-hook
   annotations:
     argocd.argoproj.io/hook: PreSync
 spec:
@@ -14,5 +14,5 @@ spec:
         args:
           - >
             URL=$(oc get route ms-users-camel -o jsonpath='{.spec.host}');
-            oc create configmap backend-url --from-literal=url=$URL --dry-run=client -o yaml | oc apply -f -
+            oc create configmap {{ .Values.service.name }} --from-literal=config.js="var appConfig = {\"BACKEND_USERS_URL\": \"$URL\"};" --dry-run=client -o yaml | oc apply -f -
       restartPolicy: Never
