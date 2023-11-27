@@ -7,3 +7,6 @@ rules:
 - apiGroups: [""]
   resources: ["configmaps"]
   verbs: ["get", "create", "update", "patch"]
+- apiGroups: ["route.openshift.io"]
+  resources: ["routes"]
+  verbs: ["get"]
