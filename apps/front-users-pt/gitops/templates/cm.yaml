@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: {{ .Values.service.name }}
-data:
-  config.js: |
-    var appConfig = {
-      "BACKEND_USERS_URL": {{ (lookup "route.openshift.io/v1" "Route" .Release.Namespace .Values.backend.name).spec.host | quote }}
-    };  

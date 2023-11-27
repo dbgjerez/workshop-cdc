@@ -8,7 +8,7 @@ spec:
     namespace: openshift-applications
     server: "https://kubernetes.default.svc"
   source:
-    path: gitops/core/applications
+    path: gitops/core/backends
     repoURL: "https://github.com/dbgjerez/workshop-cdc"
     targetRevision: main
   project: default
