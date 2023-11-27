@@ -1,0 +1,18 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: pre-sync-job
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+spec:
+  template:
+    spec:
+      containers:
+      - name: pre-sync
+        image: appropriate/curl
+        command: ["sh", "-c"]
+        args:
+          - >
+            URL=$(oc get route ms-users-camel -o jsonpath='{.spec.host}');
+            kubectl create configmap backend-url --from-literal=url=$URL --dry-run=client -o yaml | kubectl apply -f -
+      restartPolicy: Never
