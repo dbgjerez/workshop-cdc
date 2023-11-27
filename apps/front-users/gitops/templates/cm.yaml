@@ -1,9 +1,19 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: {{ .Values.service.name }}
-data:
-  config.js: |
-    var appConfig = {
-      "BACKEND_USERS_URL": {{ (lookup "route.openshift.io/v1" "Route" .Release.Namespace .Values.backend.name).spec.host | quote }}
-    };  
+{{- if .Values.backend.name }}
+{{- $backend := printf "%s" .Values.backend.name -}}
+{{- $ns := printf "%s" .Release.Namespace -}}
+{{- $routes := (lookup "route.openshift.io/v1" "Route" $ns $backend) }}
+{{- if gt (len $routes) 0 }}
+  {{- $route := index $routes 0 }}
+  apiVersion: v1
+  kind: ConfigMap
+  metadata:
+    name: {{ .Values.service.name }}
+  data:
+    config.js: |
+      var appConfig = {
+        "BACKEND_USERS_URL": {{ $route.spec.host | quote }}
+      };
+{{- end }}
+{{- else }}
+{{- fail "backend.name is required" }}
+{{- end }}
