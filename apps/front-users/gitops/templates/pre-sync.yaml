@@ -9,10 +9,10 @@ spec:
     spec:
       containers:
       - name: pre-sync
-        image: appropriate/curl
+        image: quay.io/openshift/origin-cli:latest
         command: ["sh", "-c"]
         args:
           - >
             URL=$(oc get route ms-users-camel -o jsonpath='{.spec.host}');
-            kubectl create configmap backend-url --from-literal=url=$URL --dry-run=client -o yaml | kubectl apply -f -
+            oc create configmap backend-url --from-literal=url=$URL --dry-run=client -o yaml | oc apply -f -
       restartPolicy: Never
