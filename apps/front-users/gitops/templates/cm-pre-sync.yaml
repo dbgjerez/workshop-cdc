@@ -13,6 +13,6 @@ spec:
         command: ["sh", "-c"]
         args:
           - >
-            URL=$(oc get route ms-users-camel -o jsonpath='{.spec.host}');
+            URL=$(oc get route {{ .Values.backend.name }} -o jsonpath='{.spec.host}');
             oc create configmap {{ .Values.service.name }} --from-literal=config.js="var appConfig = {\"BACKEND_USERS_URL\": \"https://$URL\"};" --dry-run=client -o yaml | oc apply -f -
       restartPolicy: Never
