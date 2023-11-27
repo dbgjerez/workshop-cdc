@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: pre-sync-job
+  name: {{ .Values.service.name }}
   annotations:
     argocd.argoproj.io/hook: PreSync
 spec:
