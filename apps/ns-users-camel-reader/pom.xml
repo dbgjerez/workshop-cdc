@@ -4,29 +4,21 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>dev.ryanezil</groupId>
   <artifactId>ns-user-camel-reader</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>0.2.3</version>
   <properties>
     <compiler-plugin.version>3.11.0</compiler-plugin.version>
     <maven.compiler.release>17</maven.compiler.release>
+    <maven.compiler.source>17</maven.compiler.source>
     <maven.compiler.target>17</maven.compiler.target>
-    <maven.compiler.source>17</maven.compiler.source>        
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
     <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
     <quarkus.platform.group-id>com.redhat.quarkus.platform</quarkus.platform.group-id>
-    <!-- https://access.redhat.com/documentation/en-us/red_hat_integration/2023.q1/html-single/release_notes_for_red_hat_integration_2023.q1/index#camel-quarkus-relnotes_integration -->
     <quarkus.platform.version>2.13.8.SP3-redhat-00001</quarkus.platform.version>
     <skipITs>true</skipITs>
-    <surefire-plugin.version>3.0.0</surefire-plugin.version>
-
-    <!-- Tests are unstable -->
     <skipTests>true</skipTests>
-    <skipITs>true</skipITs>
-
+    <surefire-plugin.version>3.0.0</surefire-plugin.version>
   </properties>
-
-  
   <dependencyManagement>
     <dependencies>
       <dependency>
@@ -43,96 +35,71 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
-
     </dependencies>
   </dependencyManagement>
   <dependencies>
-
     <dependency>
       <groupId>org.apache.camel.quarkus</groupId>
       <artifactId>camel-quarkus-microprofile-health</artifactId>
-    </dependency>    
-
+    </dependency>
     <dependency>
       <groupId>org.apache.camel.quarkus</groupId>
       <artifactId>camel-quarkus-jackson</artifactId>
     </dependency>
-
-    <!-- jsonpath is used in routes to process Debezium message -->
     <dependency>
       <groupId>org.apache.camel.quarkus</groupId>
       <artifactId>camel-quarkus-jsonpath</artifactId>
     </dependency>
-
-    <!-- generate AVRO java source code -->
-    <!-- Serialize and deserialize messages using Apache Avro binary data format -->
-    <!-- see https://camel.apache.org/camel-quarkus/3.4.x/reference/extensions/avro.html -->
     <dependency>
       <groupId>org.apache.camel.quarkus</groupId>
       <artifactId>camel-quarkus-avro</artifactId>
     </dependency>
-    
     <dependency>
       <groupId>org.apache.camel.quarkus</groupId>
       <artifactId>camel-quarkus-mongodb</artifactId>
     </dependency>
-
-    <!-- Atlasmap mappings -->
     <dependency>
       <groupId>org.apache.camel.quarkus</groupId>
       <artifactId>camel-quarkus-atlasmap</artifactId>
-    </dependency>    
-
-    <!-- enable direct:xxx URIs -->
+    </dependency>
     <dependency>
       <groupId>org.apache.camel.quarkus</groupId>
       <artifactId>camel-quarkus-direct</artifactId>
-    </dependency>    
-    <!-- enable bean:xxx URIs -->
+    </dependency>
     <dependency>
       <groupId>org.apache.camel.quarkus</groupId>
       <artifactId>camel-quarkus-bean</artifactId>
     </dependency>
-
-    <!-- enable kafka:xxx URIs -->
     <dependency>
       <groupId>org.apache.camel.quarkus</groupId>
       <artifactId>camel-quarkus-kafka</artifactId>
     </dependency>
-
-
     <dependency>
       <groupId>org.apache.camel.quarkus</groupId>
       <artifactId>camel-quarkus-log</artifactId>
     </dependency>
-
-
-    <!-- SRegistry - Avro dependency -->
     <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-apicurio-registry-avro</artifactId>
     </dependency>
-
-    <!-- OpenShift deployments extension -->
     <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-openshift</artifactId>
     </dependency>
-    
-  
     <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-arc</artifactId>
     </dependency>
     <dependency>
       <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-container-image-jib</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
       <artifactId>quarkus-junit5</artifactId>
       <scope>test</scope>
     </dependency>
-
   </dependencies>
-
-
   <repositories>
     <repository>
       <releases>
@@ -157,8 +124,6 @@
       <url>https://maven.repository.redhat.com/ga</url>
     </pluginRepository>
   </pluginRepositories>
-
-
   <build>
     <plugins>
       <plugin>
@@ -214,11 +179,8 @@
           </execution>
         </executions>
       </plugin>
-
     </plugins>
   </build>
-
-
   <profiles>
     <profile>
       <id>native</id>
