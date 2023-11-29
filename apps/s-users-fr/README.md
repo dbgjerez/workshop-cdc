@@ -50,7 +50,7 @@ podman build \
 
 ### API
 
-#### Create an user
+#### Create a user
 
 ```bash
 curl -X POST \
