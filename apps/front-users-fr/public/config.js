@@ -1,3 +1,3 @@
 var appConfig = {
-  "BACKEND_USERS_URL": "https://backend.com"
+  "BACKEND_USERS_URL": "http://localhost:8080"
 };

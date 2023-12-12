@@ -1,51 +1,48 @@
 package io.dborrego.service;
 
 import java.util.List;
-import java.util.Optional;
-
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
-import javax.transaction.Transactional;
 
 import io.dborrego.domain.User;
-import io.dborrego.domain.UserRepository;
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.transaction.Transactional;
+import jakarta.ws.rs.NotFoundException;
 
 @ApplicationScoped
 public class UserService {
 
-    @Inject
-    UserRepository usersRepository;
-
     public List<User> listAll() {
-        return usersRepository.listAll();
+        return User.findAll().list();
     }
 
     public User findById(final Long idUser) {
-        return usersRepository.findById(idUser);
+        return User.findById(idUser);
     }
 
-    @Transactional
-    public User saveOrUpdate(final User u) {
-        final User user = Optional.ofNullable(u)
-                .map(User::getId)
-                .map(id -> usersRepository
-                        .findById(id))
-                .orElse(new User());
-        user.setDni(u.getDni());
-        user.setFirstName(u.getFirstName());
-        user.setGender(u.getGender());
-        user.setLastName(u.getLastName());
-        user.setPhone(u.getPhone());
-        usersRepository.persist(user);
-        return user;
+    public User create(final User u) {
+        u.persist();
+        return u;
+    }
+
+    public void update(final User u, final Long idUser) throws NotFoundException {
+        final PanacheEntityBase user = User.findByIdOptional(idUser)
+                .map(aux -> merge((User) aux, u))
+                .orElseThrow(() -> new NotFoundException("User not found with id: " + idUser));
+        user.persist();
+    }
+
+    private User merge(User dbUser, User u) {
+        dbUser.dni = u.dni;
+        dbUser.firstName = u.firstName;
+        dbUser.gender = u.gender;
+        dbUser.lastName = u.lastName;
+        dbUser.phone = u.phone;
+        return dbUser;
     }
 
     @Transactional
     public Boolean deleteById(final Long id) {
-        return Optional.ofNullable(id)
-                .map(idUser -> usersRepository
-                        .deleteById(idUser))
-                .orElse(false);
+        return User.deleteById(id);
     }
 
 }

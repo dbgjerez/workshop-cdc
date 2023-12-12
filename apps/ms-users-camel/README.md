@@ -60,7 +60,7 @@ mvn versions:set -DnewVersion=0.1.1
 
 Or, if you don't have GraalVM installed, you can run the native executable build in a container using: 
 ```shell script
-./mvnw package -Dnative -Dquarkus.native.container-build=true
+mvn package -Dnative -Dquarkus.native.container-build=true
 ```
 
 You can directly use it or push it to a container registry.
